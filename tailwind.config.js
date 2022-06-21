@@ -1,15 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: true,
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontFamily: {
+      sans: ['Avenir Next Cyrl', 'sans-serif'],
+      cursive: ['Delius Swash Caps', 'cursive'],
+    },
     extend: {
-      fontFamily: {
-        sans: ['Avenir Next Cyrl', 'sans-serif'],
-        cursive: ['Delius Swash Caps', 'cursive'],
-      },
       colors: {
         'primary-blue': '#023796',
         'secondary-blue': '#84A4FC',
