@@ -1,10 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css';
 
 import App from 'next/app';
-import Head from 'next/head';
+// import type { AppProps } from 'next/app'
 import { createContext } from 'react';
 import { fetchAPI } from '../lib/api';
-import { getStrapiMedia } from '../lib/media';
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -13,17 +13,9 @@ function MyApp({ Component, pageProps }) {
   const { global } = pageProps;
 
   return (
-    <>
-      <Head>
-        <link
-          rel="shortcut icon"
-          href={getStrapiMedia(global.attributes.favicon)}
-        />
-      </Head>
-      <GlobalContext.Provider value={global.attributes}>
-        <Component {...pageProps} />
-      </GlobalContext.Provider>
-    </>
+    <GlobalContext.Provider value={global.attributes}>
+      <Component {...pageProps} />
+    </GlobalContext.Provider>
   );
 }
 
