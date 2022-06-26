@@ -1,9 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
 import Script from 'next/script';
-import AppFooter from './AppFooter';
-import AppNavigation from './AppNavigation';
-import Container from './Container';
 import { getStrapiMedia } from '../lib/media';
 
 // type Props = {
@@ -30,11 +27,13 @@ export function Layout({ global, children, currentPage }) {
         </title>
         <meta name="description" content="Elevate Steps Africa" />
         <link rel="icon" href={global.favicon} />
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+        />
       </Head>
-      <AppNavigation />
-      <Container>{children}</Container>
+      {children}
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" />
-      <AppFooter />
     </>
   );
 }
