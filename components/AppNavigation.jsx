@@ -6,12 +6,15 @@ function AppNavigation() {
     <nav className="navbar navbar-expand-lg bg-primary-blue">
       <div className="container-fluid px-8 md:px-12 lg:px-14 2xl:max-w-screen-2xl space-x-5">
         <Link href="/" passHref>
-          <a className="navbar-brand">
-            <Image
-              className="h-12 w-12"
-              src="/static/tmp/elevate-brand.png"
-              alt="Elevate Logo"
-            />
+          <a className="navbar-brand ">
+            <div className="flex justify-center">
+              <Image
+                src="/static/tmp/elevate-brand.png"
+                alt="Elevate Logo"
+                height={50}
+                width={50}
+              />
+            </div>
           </a>
         </Link>
         <button
@@ -109,11 +112,15 @@ function AppNavigation() {
         aria-labelledby="offcanvasExampleLabel"
       >
         <div className="offcanvas-header mt-4 mx-6">
-          <Image
-            src="/static/tmp/elevate-full-o-pb.png"
-            className="h-6"
-            alt="Elevate logo full"
-          />
+          <div className="flex justify-center">
+            <Image
+              src="/static/tmp/elevate-full-o-pb.png"
+              className="h-6"
+              alt="Elevate logo full"
+              height={40}
+              width={200}
+            />
+          </div>
           <button
             type="button"
             data-bs-dismiss="offcanvas"

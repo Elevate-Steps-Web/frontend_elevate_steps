@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function AppFooter() {
@@ -6,11 +7,15 @@ export default function AppFooter() {
       <div className="bg-black w-full lg:h-72 mt-96 px-10 xl:px-40">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 text-white justify-items-center lg:py-5 py-10 xl:gap-x-2 gap-y-6 md:gap-y-3 mx-auto max-w-[90rem]">
           <div id="logo/home" className="flex flex-col text-center space-y-3">
-            <img
-              className="h-7 mt-2"
-              src="/static/tmp/elevate-full-o-pb.png"
-              alt="Elevate Logo"
-            />
+            <div className="flex justify-center mt-2">
+              <Image
+                className="h-12"
+                src="/static/tmp/elevate-full-o-pb.png"
+                alt="Elevate Logo"
+                height={40}
+                width={200}
+              />
+            </div>
             <Link href="/" passHref>
               <a className="hover:text-orange text-secondary-blue">Home</a>
             </Link>
