@@ -1,8 +1,9 @@
 import '../styles/globals.css';
 
 import App from 'next/app';
-// import type { AppProps } from 'next/app'
 import { createContext } from 'react';
+import Loading from '../components/LoadingScreen';
+// import type { AppProps } from 'next/app'
 import { fetchAPI } from '../lib/api';
 
 // Store Strapi Global object in context
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <GlobalContext.Provider value={global.attributes}>
+      <Loading />
       <Component {...pageProps} />
     </GlobalContext.Provider>
   );
