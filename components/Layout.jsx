@@ -27,10 +27,6 @@ export function Layout({ global, children, currentPage }) {
         </title>
         <meta name="description" content="Elevate Steps Africa" />
         <link rel="icon" href={global.favicon} />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-        />
       </Head>
       {children}
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" />
