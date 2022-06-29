@@ -1,7 +1,16 @@
+import styled, { keyframes } from 'styled-components';
 import { useEffect, useState } from 'react';
 
 import GridLoader from 'react-spinners/GridLoader';
+import { fadeOut } from 'react-animations';
 import { useRouter } from 'next/router';
+
+const fadeOutAnimation = keyframes`${fadeOut}`;
+const FadeOutDiv = styled.div`
+  animation: ${fadeOutAnimation} 1.5s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+`;
 
 function Loading() {
   const router = useRouter();
@@ -9,8 +18,8 @@ function Loading() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const handleStart = (url) => url !== router.asPath && setLoading(true);
-    const handleComplete = (url) => url === router.asPath && setLoading(false);
+    const handleStart = () => setLoading(true);
+    const handleComplete = () => setLoading(false);
 
     router.events.on('routeChangeStart', handleStart);
     router.events.on('routeChangeComplete', handleComplete);
@@ -25,11 +34,17 @@ function Loading() {
 
   return (
     loading && (
-      <div className="w-screen h-screen bg-primary-blue flex flex-row items-center">
-        <div className="flex flex-col justify-items-center w-fit h-fit mx-auto">
-          <GridLoader color="#fff" loading={loading} />
+      <FadeOutDiv>
+        <div className="w-screen h-screen bg-primary-blue flex flex-row items-center">
+          <div className="flex flex-col justify-items-center w-fit h-fit mx-auto">
+            <GridLoader
+              color="#fff"
+              loading={loading}
+              className="transition-opacity"
+            />
+          </div>
         </div>
-      </div>
+      </FadeOutDiv>
     )
   );
 }
