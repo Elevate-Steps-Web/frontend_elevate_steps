@@ -30,7 +30,7 @@ export default function AppCarousel({ data }) {
               <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-center text-white font-medium tracking-wide max-w-[250px] md:max-w-none">
                 {carousselText[index].Header}
               </h1>
-              <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[250px] md:max-w-none text-center">
+              <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[250px] md:max-w-[700px] text-center">
                 {carousselText[index].Description}
               </p>
               <Link href={carousselText[index].LinkRoute} passHref>
