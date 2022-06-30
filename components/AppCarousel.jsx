@@ -27,17 +27,24 @@ export default function AppCarousel({ data }) {
         >
           <div className="absolute flex items-center justify-center w-screen h-full">
             <div className="absolute container flex flex-col items-center justify-center z-10 gap-y-3 w-fit">
-              <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-center text-white font-medium tracking-wide max-w-[250px] md:max-w-none">
-                {carousselText[index].Header}
-              </h1>
-              <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[250px] md:max-w-[700px] text-center">
-                {carousselText[index].Description}
-              </p>
-              <Link href={carousselText[index].LinkRoute} passHref>
-                <a className="hover:underline hover:text-secondary-blue text-white md:text-base lg:text-lg xl:text-xl ">
-                  {carousselText[index].LinkText}
-                </a>
-              </Link>
+              {carousselText[index].Header && (
+                <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-center text-white font-medium tracking-wide max-w-[250px] md:max-w-none">
+                  {carousselText[index].Header}
+                </h1>
+              )}
+              {carousselText[index].Description && (
+                <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[250px] md:max-w-[700px] text-center">
+                  {carousselText[index].Description}
+                </p>
+              )}
+              {carousselText[index].LinkRoute && (
+                <Link href={carousselText[index].LinkRoute} passHref>
+                  <a className="hover:underline hover:text-secondary-blue text-white md:text-base lg:text-lg xl:text-xl ">
+                    {carousselText[index].LinkText
+                      ?? carousselText[index].LinkRoute}
+                  </a>
+                </Link>
+              )}
             </div>
             <div className="absolute bg-primary-blue opacity-60 h-full w-full" />
             <AdvancedImage
