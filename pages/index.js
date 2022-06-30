@@ -1,22 +1,56 @@
-import Head from 'next/head';
+import AppCarousel from '../components/AppCarousel';
+import AppFooter from '../components/AppFooter';
+import AppNavigation from '../components/AppNavigation';
+import CTASection from '../components/CTASection';
+import FAQSection from '../components/FAQSection';
+import ImportantNumbersSection from '../components/ImportantNumbersSection';
+import { Layout } from '../components/Layout';
+import SplitSection from '../components/SplitSection';
+import { fetchAPI } from '../lib/api';
+// type Props = {
+//   currentPage?: string,
+//   global?: any
+// }
 
-export default function Home({ global }) {
+export default function Home({ global, homepageContent }) {
   return (
-    <>
-      <Head>
-        <title>
-          {global.attributes.siteName}
-          {' '}
-          | Home
-          {' '}
-        </title>
-        <meta name="description" content="Elevate Steps Africa" />
-        <link rel="icon" href={global.favicon} />
-      </Head>
-      <main>
-        <h1>Hello World!</h1>
-      </main>
-    </>
-
+    <Layout global={global} currentPage="Home">
+      <AppNavigation />
+      <div id="app-carousel">
+        <AppCarousel data={homepageContent} />
+      </div>
+      <div id="app-career-success;  picture left, text right">
+        <SplitSection />
+      </div>
+      <div id="empty blue section">
+        <h1>Empty blue section works!</h1>
+      </div>
+      <div id="important numbers">
+        <ImportantNumbersSection />
+      </div>
+      <div id="faeq section">
+        <FAQSection />
+      </div>
+      <div id="cta section">
+        <CTASection />
+      </div>
+      <AppFooter />
+    </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  // get Homepage properties
+  const homepage = await fetchAPI('/homepage', {
+    populate: {
+      content: {
+        populate: '*',
+      },
+      defaultSeo: {
+        populate: '*',
+      },
+    },
+  });
+  // TODO: prepoluate global props before homepage data
+  return { props: { homepageContent: homepage.data.attributes.content[0] } };
 }

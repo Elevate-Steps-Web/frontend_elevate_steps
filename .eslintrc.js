@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'plugin:@next/next/recommended',
     'airbnb',
   ],
   parserOptions: {
@@ -14,9 +15,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
     'no-console': 'off',
     'react/jsx-filename-extension': 'off',
@@ -24,5 +23,6 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
   },
 };
