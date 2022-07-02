@@ -20,7 +20,7 @@ export default function Home({ global, homepageContent }) {
         <AppCarousel data={homepageContent} />
       </div>
       <div id="app-career-success;  picture left, text right">
-        <SplitSection />
+        <SplitSection data={homepageContent} />
       </div>
       <div id="empty blue section">
         <h1>Empty blue section works!</h1>
@@ -51,6 +51,6 @@ export async function getServerSideProps() {
       },
     },
   });
-  // TODO: prepoluate global props before homepage data
+  // TODO: pre-populate global props before homepage data
   return { props: { homepageContent: homepage.data.attributes.content[0] } };
 }
