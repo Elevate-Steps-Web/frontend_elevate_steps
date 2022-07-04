@@ -1,10 +1,8 @@
 import AppCarousel from '../components/AppCarousel';
-import AppFooter from '../components/AppFooter';
-import AppNavigation from '../components/AppNavigation';
 import CTASection from '../components/CTASection';
 import FAQSection from '../components/FAQSection';
 import ImportantNumbersSection from '../components/ImportantNumbersSection';
-import { Layout } from '../components/Layout';
+import { Page } from '../components/Page';
 import SplitSection from '../components/SplitSection';
 import { fetchAPI } from '../lib/api';
 // type Props = {
@@ -14,8 +12,7 @@ import { fetchAPI } from '../lib/api';
 
 export default function Home({ global, homepageContent }) {
   return (
-    <Layout global={global} currentPage="Home">
-      <AppNavigation />
+    <Page global={global} currentPage="Home">
       <div id="app-carousel">
         <AppCarousel data={homepageContent} />
       </div>
@@ -34,8 +31,7 @@ export default function Home({ global, homepageContent }) {
       <div id="cta section">
         <CTASection />
       </div>
-      <AppFooter />
-    </Layout>
+    </Page>
   );
 }
 
