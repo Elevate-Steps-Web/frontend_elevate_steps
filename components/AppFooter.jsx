@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function AppFooter() {
   return (
-    <footer className="relative self-end bottom-0 mt-screen">
+    <footer className="relative w-full self-end bottom-0 mt-screen">
       <div className="bg-black w-full lg:h-72 mt-96 px-10 xl:px-40">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 text-white justify-items-center lg:py-5 py-10 xl:gap-x-2 gap-y-6 md:gap-y-3 mx-auto max-w-[90rem]">
           <div id="logo/home" className="flex flex-col text-center space-y-3">
