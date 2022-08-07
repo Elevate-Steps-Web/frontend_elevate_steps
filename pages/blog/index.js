@@ -4,9 +4,14 @@ import { BlogListSection } from '../../components/BlogListSection';
 import { fetchAPI } from '../../lib/api';
 
 export default function BlogHome({ global, blogPosts }) {
+  console.log(blogPosts);
+  blogPosts.map((blog) => console.log(Date.parse(blog.attributes.createdAt)));
   const latestBlog = blogPosts
     /* eslint-disable-next-line max-len */
-    && blogPosts.reduce((prev, curr) => (prev.attributes.createdAt < curr.attributes.createdAt ? prev : curr));
+    && blogPosts.reduce((prev, curr) => (Date.parse(prev.attributes.createdAt)
+      > Date.parse(curr.attributes.createdAt)
+      ? prev
+      : curr));
   return (
     <Page global={global} currentPage="Blog">
       {blogPosts && (
