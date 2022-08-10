@@ -1,0 +1,11 @@
+.markdown p {
+  @apply font-light text-lg md:text-xl text-black mb-8;
+}
+
+.markdown blockquote {
+  @apply p-4 border-l-4 border-green border-opacity-30 my-4;
+}
+
+.markdown blockquote p {
+  @apply font-light text-lg text-black italic mb-0;
+}
