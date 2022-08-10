@@ -20,6 +20,7 @@ export function BlogIntroSection({ latestPost = null, featuredPosts = [] }) {
               Latest
             </h1>
             <BlogCard
+              id={latestPost.id}
               title={latestPost.attributes.blogTitle}
               description={latestPost.attributes.blogDescription}
               content={latestPost.attributes.blogContent}
