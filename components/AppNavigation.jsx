@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import LangSwitch from './LangSwitch';
 
 function AppNavigation() {
   return (
@@ -62,21 +63,17 @@ function AppNavigation() {
                 About
               </span>
               <div
-                className="dropdown-menu bg-primary-blue rounded-b-lg border-orange px-2"
+                className="dropdown-menu px-2"
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <Link href="/about/who-we-are" passHref>
-                  <a className="nav-link hover:text-orange text-white">
-                    Who We Are
-                  </a>
+                  <a className="nav-link hover:text-orange">Who We Are</a>
                 </Link>
                 <Link href="/about/what-we-do" passHref>
-                  <a className="nav-link hover:text-orange text-white">
-                    What We Do
-                  </a>
+                  <a className="nav-link hover:text-orange">What We Do</a>
                 </Link>
                 <Link href="/about/partners-&-sponsors" passHref>
-                  <a className="nav-link hover:text-orange text-white">
+                  <a className="nav-link hover:text-orange">
                     Partners and Sponsors
                   </a>
                 </Link>
@@ -103,10 +100,11 @@ function AppNavigation() {
               </a>
             </Link>
           </div>
+          <LangSwitch />
         </div>
       </div>
       <div
-        className="md:hidden offcanvas-lg offcanvas-end bg-secondary-blue opacity-70"
+        className="md:hidden offcanvas-lg offcanvas-end bg-secondary-blue opacity-90"
         tabIndex="-1"
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
@@ -178,6 +176,7 @@ function AppNavigation() {
           <Link href="/contact" passHref>
             <a className="hover:text-orange">Contact</a>
           </Link>
+          <LangSwitch />
         </div>
         <div className="hidden flex flex-col lg:flex-row w-[200px] gap-y-3 lg:gap-y-0 lg:gap-x-4 lg:w-[180px] items-center">
           <Link href="/register" passHref>
