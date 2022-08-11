@@ -1,9 +1,9 @@
 import AppCarousel from '../components/AppCarousel';
 import CTASection from '../components/CTASection';
 import FAQSection from '../components/FAQSection';
-import ImportantNumbersSection from '../components/ImportantNumbersSection';
 import { Page } from '../components/Page';
 import SplitSection from '../components/SplitSection';
+import StatsSection from '../components/StatsSection';
 import { fetchAPI } from '../lib/api';
 // type Props = {
 //   currentPage?: string,
@@ -12,7 +12,7 @@ import { fetchAPI } from '../lib/api';
 
 export default function Home({
   global,
-  homepageContent: { caroussel, splitSection },
+  homepageContent: { caroussel, splitSection, statsSection },
 }) {
   return (
     <Page global={global} currentPage="Home">
@@ -26,7 +26,7 @@ export default function Home({
         <h1>Empty blue section works!</h1>
       </div>
       <div id="important numbers">
-        <ImportantNumbersSection />
+        <StatsSection data={statsSection} />
       </div>
       <div id="faeq section">
         <FAQSection />
@@ -58,7 +58,6 @@ export async function getStaticProps({ locale: routeLocale }) {
       attributes: { content },
     },
   } = homepage;
-  // console.log(homepage.data)
   if (content === null) {
     console.log('No data content in homepage.');
     return {
@@ -73,6 +72,9 @@ export async function getStaticProps({ locale: routeLocale }) {
         break;
       case 'sections.split-section':
         homepageContent.splitSection = item;
+        break;
+      case 'sections.stats-section':
+        homepageContent.statsSection = item;
         break;
       default:
         console.error('Component not categorized. Not rendering.');
