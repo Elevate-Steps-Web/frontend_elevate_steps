@@ -32,9 +32,9 @@ export default function AppCarousel({ data }) {
                   {carousselText[index].Header}
                 </h1>
               )}
-              {carousselText[index].Description && (
+              {carousselText[index].Caption && (
                 <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[250px] md:max-w-[700px] text-center">
-                  {carousselText[index].Description}
+                  {carousselText[index].Caption}
                 </p>
               )}
               {carousselText[index].LinkRoute && (
