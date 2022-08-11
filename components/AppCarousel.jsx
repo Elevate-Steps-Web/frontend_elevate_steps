@@ -23,17 +23,17 @@ export default function AppCarousel({ data }) {
       {imageData.map((image, index) => (
         <Carousel.Item
           key={uuidv4()}
-          className="shadow-xl h-[600px] lg:h-[700px] xl:h-[800px]"
+          className="shadow-xl h-[37.5rem] lg:h-[43.75rem] xl:h-[50rem]"
         >
           <div className="absolute flex items-center justify-center w-screen h-full">
-            <div className="absolute container flex flex-col items-center justify-center z-10 gap-y-3 w-fit">
+            <div className="absolute container flex flex-col items-center justify-center z-10 gap-y-3 w-fit lg:max-w-[70rem]">
               {carousselText[index].Header && (
-                <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-center text-white font-medium tracking-wide max-w-[250px] md:max-w-none">
+                <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-center text-white font-medium tracking-wide ">
                   {carousselText[index].Header}
                 </h1>
               )}
               {carousselText[index].Caption && (
-                <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[250px] md:max-w-[700px] text-center">
+                <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[15.5rem] md:max-w-[45rem] text-center">
                   {carousselText[index].Caption}
                 </p>
               )}
@@ -48,7 +48,7 @@ export default function AppCarousel({ data }) {
             </div>
             <div className="absolute bg-primary-blue opacity-60 h-full w-full" />
             <AdvancedImage
-              className="object-cover object-center h-full md:h-fit"
+              className="object-cover object-center h-full w-full"
               cldImg={cld.image(image.attributes.provider_metadata.public_id)}
             />
           </div>
