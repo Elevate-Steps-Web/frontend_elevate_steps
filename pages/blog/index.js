@@ -1,6 +1,6 @@
-import { Page } from '../../components/Page';
 import { BlogIntroSection } from '../../components/BlogIntroSection';
 import { BlogListSection } from '../../components/BlogListSection';
+import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
 
 export default function BlogHome({ global, blogPosts }) {
@@ -30,7 +30,10 @@ export default function BlogHome({ global, blogPosts }) {
   );
 }
 
-export async function getStaticProps() {
-  const blogPostsRes = await fetchAPI('/blog-posts', { populate: '*' });
+export async function getStaticProps({ locale: routeLocale }) {
+  const blogPostsRes = await fetchAPI('/blog-posts', {
+    populate: '*',
+    locale: routeLocale,
+  });
   return { props: { blogPosts: blogPostsRes.data } };
 }

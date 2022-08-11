@@ -1,9 +1,8 @@
-// import ReactMarkdown from 'react-markdown';
-import MarkdownIt from 'markdown-it';
-import parse from 'html-react-parser';
-import _ from 'lodash';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
+import MarkdownIt from 'markdown-it';
+import _ from 'lodash';
+import parse from 'html-react-parser';
 import { Page } from '../../../components/Page';
 import { fetchAPI } from '../../../lib/api';
 
@@ -52,24 +51,26 @@ export default function BlogPost({ global, post }) {
 }
 
 export async function getStaticPaths() {
-  const postRes = await fetchAPI('/blog-posts');
+  const postRes = await fetchAPI('/blog-posts', { locale: 'all' });
   return {
     paths: postRes.data.map((post) => ({
       params: {
         id: post.id.toString(),
         slug: _.kebabCase(post.attributes.blogTitle),
       },
+      locale: post.attributes.locale,
     })),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale: routeLocale }) {
   const postRes = await fetchAPI('/blog-posts', {
     filters: {
       id: params.id,
     },
     populate: '*',
+    locale: routeLocale,
   });
   return {
     props: { post: postRes.data[0] },
