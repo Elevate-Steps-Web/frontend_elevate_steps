@@ -1,4 +1,5 @@
-import { AdvancedImage } from '@cloudinary/react';
+import { AdvancedImage, AdvancedVideo } from '@cloudinary/react';
+
 import { Cloudinary } from '@cloudinary/url-gen';
 import Link from 'next/link';
 import Section from './Section';
@@ -19,7 +20,7 @@ export default function SplitSection({ data }) {
     media: {
       data: {
         attributes: {
-          provider_metadata: { public_id: mediaId },
+          provider_metadata: { public_id: mediaId, resource_type: mediaType },
         },
       },
     },
@@ -27,15 +28,27 @@ export default function SplitSection({ data }) {
   return (
     <Section>
       <div className="grid md:grid-cols-2 w-full h-full">
-        <div id="picture" className="hidden md:block h-full w-full bg-orange">
-          <AdvancedImage
-            className="object-cover object-center h-full w-full"
-            cldImg={cld.image(mediaId)}
-          />
+        <div
+          id="media"
+          className="order-last md:order-1 md:block h-full w-full bg-black py-14"
+        >
+          {mediaType === 'image' && (
+            <AdvancedImage
+              className="object-cover object-center h-full w-full"
+              cldImg={cld.image(mediaId)}
+            />
+          )}
+          {mediaType === 'video' && (
+            <AdvancedVideo
+              className="object-cover object-center h-full w-full"
+              cldVid={cld.video(mediaId)}
+              controls
+            />
+          )}
         </div>
         <div
           id="bg_text"
-          className="flex flex-col justify-center h-full w-full bg-primary-blue"
+          className="flex flex-col justify-center h-full w-full bg-primary-blue order-2"
         >
           <div className="flex flex-row items-center mx-auto max-w-lg">
             <div
