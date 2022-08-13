@@ -30,7 +30,7 @@ export default function SplitSection({ data }) {
       <div className="grid md:grid-cols-2 w-full h-full">
         <div
           id="media"
-          className="order-last md:order-1 md:block h-full w-full bg-black py-14"
+          className="order-last md:order-1 md:block h-full w-full bg-primary-blue "
         >
           {mediaType === 'image' && (
             <AdvancedImage
@@ -40,7 +40,7 @@ export default function SplitSection({ data }) {
           )}
           {mediaType === 'video' && (
             <AdvancedVideo
-              className="object-cover object-center h-full w-full"
+              className="object-cover object-center h-full w-full px-4 py-14"
               cldVid={cld.video(mediaId)}
               controls
             />
