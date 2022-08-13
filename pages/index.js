@@ -12,24 +12,26 @@ import { fetchAPI } from '../lib/api';
 
 export default function Home({
   global,
-  homepageContent: { caroussel, splitSection, statsSection },
+  homepageContent: {
+    caroussel, splitSection, statsSection, faeqSection,
+  },
 }) {
   return (
     <Page global={global} currentPage="Home">
       <div id="app-carousel">
         <AppCarousel data={caroussel} />
       </div>
-      <div id="app-career-success;  picture left, text right">
+      <div id="picture left, text right">
         <SplitSection data={splitSection} />
       </div>
       <div id="empty blue section">
-        <h1>Empty blue section works!</h1>
+        {/* <h1>Empty blue section works!</h1> */}
       </div>
       <div id="important numbers">
         <StatsSection data={statsSection} />
       </div>
       <div id="faeq section">
-        <FAQSection />
+        <FAQSection data={faeqSection} />
       </div>
       <div id="cta section">
         <CTASection />
@@ -75,6 +77,9 @@ export async function getStaticProps({ locale: routeLocale }) {
         break;
       case 'sections.stats-section':
         homepageContent.statsSection = item;
+        break;
+      case 'sections.faeq-section':
+        homepageContent.faeqSection = item;
         break;
       default:
         console.error('Component not categorized. Not rendering.');
