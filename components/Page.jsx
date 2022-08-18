@@ -2,13 +2,21 @@ import AppFooter from './AppFooter';
 import AppNavigation from './AppNavigation';
 import { Layout } from './Layout';
 
-export function Page({ global, children, currentPage }) {
+export function Page({
+  global: {
+    attributes: {
+      favicon, siteName, nav, footer,
+    },
+  },
+  children,
+  currentPage,
+}) {
   return (
-    <Layout global={global} currentPage={currentPage}>
+    <Layout favicon={favicon} siteName={siteName} currentPage={currentPage}>
       <div className="flex flex-col h-screen">
-        <AppNavigation />
+        <AppNavigation nav={nav} />
         <main className="flex-grow">{children}</main>
-        <AppFooter />
+        <AppFooter footer={footer} />
       </div>
     </Layout>
   );

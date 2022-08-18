@@ -5,10 +5,6 @@ import { Page } from '../components/Page';
 import SplitSection from '../components/SplitSection';
 import StatsSection from '../components/StatsSection';
 import { fetchAPI } from '../lib/api';
-// type Props = {
-//   currentPage?: string,
-//   global?: any
-// }
 
 export default function Home({
   global,
