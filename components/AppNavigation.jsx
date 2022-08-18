@@ -1,20 +1,88 @@
-import Image from 'next/image';
+/* eslint-disable no-underscore-dangle */
+import { AdvancedImage } from '@cloudinary/react';
+import { Cloudinary } from '@cloudinary/url-gen';
 import Link from 'next/link';
+import { v4 as uuidv4 } from 'uuid';
+import AppNavigationDropdown from './AppNavigation/AppNavigationDropdown';
+import AppNavigationItem from './AppNavigation/AppNavigationItem';
+import AppNavigationOffCanvasDropdown from './AppNavigation/AppNavigationOffCanvasDropdown';
+import AppNavigationOffCanvasItem from './AppNavigation/AppNavigationOffCanvasItem';
 import LangSwitch from './LangSwitch';
 
-function AppNavigation() {
+function renderItemOrDropdown(navItem, offcanvas = false) {
+  if (!offcanvas) {
+    switch (navItem.__component) {
+      case 'navigation.nav-item':
+        return (
+          <AppNavigationItem
+            key={uuidv4()}
+            linkText={navItem.linkText}
+            linkRoute={navItem.linkRoute}
+          />
+        );
+      case 'navigation.nav-dropdown':
+        return (
+          <AppNavigationDropdown
+            key={uuidv4()}
+            title={navItem.title}
+            navItems={navItem.navItems}
+          />
+        );
+      default:
+        return <div key={uuidv4()} />;
+    }
+  } else {
+    switch (navItem.__component) {
+      case 'navigation.nav-item':
+        return (
+          <AppNavigationOffCanvasItem
+            key={uuidv4()}
+            linkText={navItem.linkText}
+            linkRoute={navItem.linkRoute}
+          />
+        );
+      case 'navigation.nav-dropdown':
+        return (
+          <AppNavigationOffCanvasDropdown
+            key={uuidv4()}
+            title={navItem.title}
+            navItems={navItem.navItems}
+          />
+        );
+      default:
+        return <div key={uuidv4()} />;
+    }
+  }
+}
+
+function AppNavigation({ nav }) {
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: 'elevate-steps',
+    },
+    url: {
+      secure: true, // force https, set to false to force http
+    },
+  });
+  // filter the brand image out of array and conditionally render it
   return (
     <nav className="navbar navbar-expand-lg bg-primary-blue">
       <div className="container-fluid px-8 md:px-12 lg:px-14 2xl:max-w-screen-2xl space-x-5">
         <Link href="/" passHref>
-          <a className="navbar-brand ">
+          <a className="navbar-brand">
             <div className="flex justify-center">
-              <Image
-                src="/static/tmp/elevate-brand.png"
-                alt="Elevate Logo"
-                height={50}
-                width={50}
-              />
+              {nav
+                .filter((navItem) => navItem.__component === 'images.nav-brand')
+                .map((image) => (
+                  <AdvancedImage
+                    key={uuidv4()}
+                    className="object-cover object-center h-10 w-10"
+                    cldImg={cld.image(
+                      image.navBrand.data.attributes.provider_metadata
+                        .public_id,
+                    )}
+                  />
+                ))}
             </div>
           </a>
         </Link>
@@ -42,48 +110,7 @@ function AppNavigation() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav me-auto text-lg">
-            <Link href="/blog" passHref>
-              <a className="nav-link hover:text-secondary-blue text-white">
-                Blog
-              </a>
-            </Link>
-            <Link href="/news" passHref>
-              <a className="nav-link hover:text-secondary-blue text-white">
-                News
-              </a>
-            </Link>
-            <span className="nav-item dropdown">
-              <span
-                className="nav-link dropdown-toggle text-white hover:text-secondary-blue"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                About
-              </span>
-              <div
-                className="dropdown-menu px-2"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <Link href="/about/who-we-are" passHref>
-                  <a className="nav-link hover:text-orange">Who We Are</a>
-                </Link>
-                <Link href="/about/what-we-do" passHref>
-                  <a className="nav-link hover:text-orange">What We Do</a>
-                </Link>
-                <Link href="/about/partners-&-sponsors" passHref>
-                  <a className="nav-link hover:text-orange">
-                    Partners and Sponsors
-                  </a>
-                </Link>
-              </div>
-            </span>
-            <Link href="/contact" passHref>
-              <a className="nav-link hover:text-secondary-blue text-white">
-                Contact
-              </a>
-            </Link>
+            {nav.map((navItem) => renderItemOrDropdown(navItem))}
           </div>
           <div className="hidden flex flex-col lg:flex-row w-[200px] gap-y-3 lg:gap-y-0 lg:gap-x-4 lg:w-[180px] items-center">
             <Link href="/register" passHref>
@@ -111,13 +138,17 @@ function AppNavigation() {
       >
         <div className="offcanvas-header mt-4 mx-6">
           <div className="flex justify-center">
-            <Image
-              src="/static/tmp/elevate-full-o-pb.png"
-              className="h-6"
-              alt="Elevate logo full"
-              height={40}
-              width={200}
-            />
+            {nav
+              .filter((navItem) => navItem.__component === 'image.nav-brand')
+              .map((image) => (
+                <AdvancedImage
+                  key={uuidv4()}
+                  className="object-cover object-center h-full w-full"
+                  cldImg={cld.image(
+                    image.attributes.provider_metadata.public_id,
+                  )}
+                />
+              ))}
           </div>
           <button
             type="button"
@@ -136,46 +167,7 @@ function AppNavigation() {
           </button>
         </div>
         <div className="lg:hidden mx-10 flex flex-col gap-y-4 text-2xl">
-          <Link href="/blog" passHref>
-            <a className="hover:text-orange active:underline">Blog</a>
-          </Link>
-          <Link href="/news" passHref>
-            <a className="hover:text-orange  active:underline">News</a>
-          </Link>
-          <span className="dropdown">
-            <span
-              className="dropdown-toggle hover:text-orange  active:underline"
-              id="navbarDropdownMenuLink"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              About
-            </span>
-            <div
-              className="dropdown-menu bg-secondary-blue rounded-b-lg border-orange px-2"
-              aria-labelledby="navbarDropdownMenuLink"
-            >
-              <Link href="/about/who-we-are" passHref>
-                <a className="block hover:text-orange text-xl  active:underline">
-                  Who We Are
-                </a>
-              </Link>
-              <Link href="/about/what-we-do" passHref>
-                <a className="block hover:text-orange text-xl  active:underline">
-                  What We Do
-                </a>
-              </Link>
-              <Link href="/about/partners-&-sponsors" passHref>
-                <a className="block hover:text-orange text-xl  active:underline">
-                  Partners and Sponsors
-                </a>
-              </Link>
-            </div>
-          </span>
-          <Link href="/contact" passHref>
-            <a className="hover:text-orange">Contact</a>
-          </Link>
+          {nav.map((navItem) => renderItemOrDropdown(navItem, true))}
           <LangSwitch />
         </div>
         <div className="hidden flex flex-col lg:flex-row w-[200px] gap-y-3 lg:gap-y-0 lg:gap-x-4 lg:w-[180px] items-center">
