@@ -28,7 +28,7 @@ export function Layout({
         <link rel="icon" href={getStrapiMedia(favicon)} />
       </Head>
       {children}
-      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" />
+      <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" />
     </>
   );
 }
