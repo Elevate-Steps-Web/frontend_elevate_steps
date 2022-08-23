@@ -1,11 +1,16 @@
+import { v4 as uuidv4 } from 'uuid';
 import CTAItem from './CTAItem';
-import Container from './Container';
+import Section from './Section';
 
-export default function CTASection() {
+export default function CTASection({ data }) {
+  const { ctaItems } = data;
   return (
-    <Container>
-      <h1>CTASection</h1>
-      <CTAItem />
-    </Container>
+    <Section>
+      <div className="h-full bg-secondary-blue px-16 py-36 w-full flex flex-col gap-y-14 lg:flex-row lg:gap-y-0">
+        {ctaItems.map((ctaItem) => (
+          <CTAItem key={uuidv4()} data={ctaItem} />
+        ))}
+      </div>
+    </Section>
   );
 }
