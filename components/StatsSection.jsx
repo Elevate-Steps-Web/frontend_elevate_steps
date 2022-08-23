@@ -5,7 +5,7 @@ export default function ImportantNumbersSection({ data }) {
   const { blocks, summary } = data;
   return (
     <Section>
-      <div className="h-full bg-white px-16 py-24 w-full">
+      <div className="h-full bg-white px-16 py-36 w-full">
         <div className="w-full h-1/2 flex flex-col md:flex-row justify-center gap-y-16 md:gap-0">
           {blocks.map((block) => (
             <div
