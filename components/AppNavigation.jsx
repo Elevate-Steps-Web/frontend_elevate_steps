@@ -139,13 +139,13 @@ function AppNavigation({ nav }) {
         <div className="offcanvas-header mt-4 mx-6">
           <div className="flex justify-center">
             {nav
-              .filter((navItem) => navItem.__component === 'image.nav-brand')
+              .filter((navItem) => navItem.__component === 'images.nav-brand')
               .map((image) => (
                 <AdvancedImage
                   key={uuidv4()}
-                  className="object-cover object-center h-full w-full"
+                  className="object-cover object-center max-h-16 w-full"
                   cldImg={cld.image(
-                    image.attributes.provider_metadata.public_id,
+                    image.navBrand.data.attributes.provider_metadata.public_id,
                   )}
                 />
               ))}
