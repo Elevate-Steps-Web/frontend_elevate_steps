@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+/* eslint-disable global-require */
 module.exports = {
   important: true,
   content: [
@@ -21,5 +22,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    /* eslint-disable-next-line import/no-extraneous-dependencies */
+    require('@tailwindcss/forms'),
+  ],
 };
