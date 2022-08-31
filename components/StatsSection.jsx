@@ -15,7 +15,7 @@ export default function ImportantNumbersSection({ data }) {
               <h2 className="block text-6xl lg:text-8xl text-primary-blue">
                 {block.number}
               </h2>
-              <p className="block sm:text-lg lg:text-2xl text-green">
+              <p className="block text-2xl lg:text-3xl font-light text-green">
                 {block.metric}
               </p>
             </div>

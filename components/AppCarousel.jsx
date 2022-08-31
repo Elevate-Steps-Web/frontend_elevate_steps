@@ -23,12 +23,12 @@ export default function AppCarousel({ data }) {
       {imageData.map((image, index) => (
         <Carousel.Item
           key={uuidv4()}
-          className="shadow-xl h-[37.5rem] lg:h-[43.75rem] xl:h-[50rem]"
+          className="shadow-xl h-[35rem] lg:h-[44rem] xl:h-[50rem]"
         >
           <div className="absolute flex items-center justify-center w-screen h-full">
-            <div className="absolute container flex flex-col items-center justify-center z-10 gap-y-3 w-fit lg:max-w-[70rem]">
+            <div className="absolute container flex flex-col items-center justify-center z-10 gap-y-3 w-fit lg:max-w-[70rem] mx-12">
               {carousselText[index].Header && (
-                <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-center text-white font-medium tracking-wide ">
+                <h1 className="text-5xl md:text-5xl lg:text-7xl xl:text-8xl text-center text-white font-medium tracking-wide ">
                   {carousselText[index].Header}
                 </h1>
               )}
