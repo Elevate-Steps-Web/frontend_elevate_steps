@@ -18,11 +18,13 @@ export default function Contact({
 }) {
   return (
     <Page global={global} currentPage="Contact Us">
-      {pageHeader && <PageHeader data={pageHeader} />}
-      {socialMediaSection && <SocialMediaSection data={socialMediaSection} />}
-      {contactEmails && <ContactEmails data={contactEmails} />}
-      {contactPhones && <ContactPhoneNumbers data={contactPhones} />}
-      {contactForm && <ContactForm data={contactForm} />}
+      <div className="w-full h-full bg-primary-blue">
+        {pageHeader && <PageHeader data={pageHeader} />}
+        {socialMediaSection && <SocialMediaSection data={socialMediaSection} />}
+        {contactEmails && <ContactEmails data={contactEmails} />}
+        {contactPhones && <ContactPhoneNumbers data={contactPhones} />}
+        {contactForm && <ContactForm data={contactForm} />}
+      </div>
     </Page>
   );
 }

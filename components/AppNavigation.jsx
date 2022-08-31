@@ -143,7 +143,7 @@ function AppNavigation({ nav }) {
               .map((image) => (
                 <AdvancedImage
                   key={uuidv4()}
-                  className="object-cover object-center max-h-16 w-full"
+                  className="object-cover object-center max-h-16 md:w-full"
                   cldImg={cld.image(
                     image.navBrand.data.attributes.provider_metadata.public_id,
                   )}

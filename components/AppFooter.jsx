@@ -19,13 +19,13 @@ export default function AppFooter({ footer }) {
       <div className="bg-black w-full px-10 xl:px-40">
         <div className="grid md:grid-cols-2 lg:flex lg:flex-row text-white justify-items-center lg:py-5 py-10 xl:gap-x-2 gap-y-6 md:gap-y-3 mx-auto max-w-[90rem]">
           <div id="logo/home" className="flex flex-col text-center space-y-3">
-            <div className="flex justify-center mt-2">
+            <div className="flex justify-center mt-2 ">
               {footer
                 .filter((navItem) => navItem.__component === 'images.nav-brand')
                 .map((image) => (
                   <AdvancedImage
                     key={1}
-                    className="object-cover object-center h-10 w-full"
+                    className="object-cover object-center h-full lg:h-10 lg:w-full w-3/5"
                     cldImg={cld.image(
                       image.navBrand.data.attributes.provider_metadata
                         .public_id,
@@ -47,7 +47,7 @@ export default function AppFooter({ footer }) {
         </div>
         <div
           id="copyright"
-          className="text-center mt-10 text-secondary-blue font-light text-sm"
+          className="text-center py-10 text-secondary-blue font-light text-sm"
         >
           <span>
             Copyright &copy;
