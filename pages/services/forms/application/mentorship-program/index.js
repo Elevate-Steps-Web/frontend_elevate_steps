@@ -72,17 +72,17 @@ export default function MentorshipApplicationPage({ global, pageContent }) {
       currentPage="Elevate Mentorship Program Application"
     >
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col flex-grow h-screen bg-primary-blue">
+        <div className="flex flex-col flex-grow h-screen bg-primary-blue justify-center lg:justify-start  lg:items-start items-center ">
           <Link href="/" passHref>
             <a className="h-24 w-fit">
-              <div className="absolute h-20 mt-8 ml-14">
+              <div className="lg:absolute lg:h-20 h-10 lg:mt-8 lg:ml-14 mt-6 ml-4">
                 {footer
                   /* eslint-disable-next-line no-underscore-dangle */
                   .filter((navItem) => navItem.__component === 'images.nav-brand')
                   .map((image) => (
                     <AdvancedImage
                       key={1}
-                      className="object-cover object-center h-full lg:h-10 lg:w-full w-3/5"
+                      className="object-cover object-center h-full lg:h-10 lg:w-full"
                       cldImg={cld.image(
                         image.navBrand.data.attributes.provider_metadata
                           .public_id,
@@ -92,7 +92,7 @@ export default function MentorshipApplicationPage({ global, pageContent }) {
               </div>
             </a>
           </Link>
-          <div className="absolute h-20 mt-6 mr-14 right-0">
+          <div className="lg:absolute lg:h-20 lg:mt-6 lg:mr-14 lg:right-0 md:mb-0 text-center mt-4 pb-2">
             <span className="text-secondary-blue font-cursive text-2xl">
               Elevate Mentorship Program Application
             </span>
