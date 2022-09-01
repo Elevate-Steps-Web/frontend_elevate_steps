@@ -3,12 +3,6 @@ import React from 'react';
 import Script from 'next/script';
 import { getStrapiMedia } from '../lib/media';
 
-// type Props = {
-//     children?: ReactNode,
-//     currentPage?: string,
-//     global?: any
-//   }
-
 export function Layout({
   favicon, siteName, children, currentPage,
 }) {
