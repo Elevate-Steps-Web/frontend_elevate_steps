@@ -46,10 +46,12 @@ export default function FormSection({ data }) {
       ))}
       {fields[0].inputField.inputType !== 'Submit' && (
         <SwiperSlide>
-          <span className="text-4xl font-cursive text-green mr-10">
-            All done with this section! Press the right arrow key to continue!
-          </span>
-          <BouncingArrow direction="right" />
+          <div className="flex flex-col lg:flex-row lg:justify-center lg:w-full">
+            <span className="text-2xl lg:text-4xl font-cursive text-green lg:mr-10 px-14 py-5 lg:px-0 lg:w-3/5">
+              All done with this section! Press the right arrow key to continue!
+            </span>
+            <BouncingArrow direction="right" />
+          </div>
         </SwiperSlide>
       )}
     </Swiper>
