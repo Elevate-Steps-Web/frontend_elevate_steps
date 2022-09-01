@@ -21,6 +21,7 @@ export default function FormInput({ data }) {
             <input
               id={fieldName}
               type="text"
+              name={fieldName}
               className="
                             text-white
                             mt-1
@@ -57,6 +58,7 @@ export default function FormInput({ data }) {
             </span>
             <textarea
               id={fieldName}
+              name={fieldName}
               className="
                                     mt-1
                                 text-white
@@ -91,6 +93,7 @@ export default function FormInput({ data }) {
             <input
               type="email"
               id={fieldName}
+              name={fieldName}
               className="
                                     mt-1
                               text-white
@@ -130,6 +133,7 @@ export default function FormInput({ data }) {
             <input
               id={fieldName}
               type="tel"
+              name={fieldName}
               className="
                                     mt-1
                               text-white
@@ -165,7 +169,7 @@ export default function FormInput({ data }) {
             </span>
             <div className="mt-8 text-3xl flex flex-row justify-center">
               <div className="flex flex-col justify-start mx-auto">
-                {fieldOptions.map((option, index) => (
+                {fieldOptions.map((option) => (
                   <label
                     className="inline-flex items-center mb-4"
                     htmlFor={fieldName}
@@ -175,8 +179,8 @@ export default function FormInput({ data }) {
                       className="form-radio h-6 w-6 checked:bg-primary-blue bg-transparent border-white"
                       type="radio"
                       defaultChecked
-                      name="radio-direct"
-                      value={index + 1}
+                      name={fieldName}
+                      value={option.option}
                     />
                     <span className="ml-2 text-white">{option.option}</span>
                   </label>
@@ -206,7 +210,9 @@ export default function FormInput({ data }) {
                     <input
                       className="form-checkbox rounded-sm checked:bg-green h-6 w-6 bg-transparent border-white"
                       type="checkbox"
+                      name={fieldName}
                       id={fieldName}
+                      value={option.option}
                     />
                     <span className="ml-2 text-white font-light">
                       {option.option}
@@ -229,9 +235,12 @@ export default function FormInput({ data }) {
             <select
               className="form-select block w-full mt-1text-white rounded border-secondary-blue h-16 text-2xl bg-transparent text-green mt-10"
               id={fieldName}
+              name={fieldName}
             >
               {fieldOptions.map((option) => (
-                <option key={uuidv4()}>{option.option}</option>
+                <option key={uuidv4()} value={option.option}>
+                  {option.option}
+                </option>
               ))}
             </select>
           </label>

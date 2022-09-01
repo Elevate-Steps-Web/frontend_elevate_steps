@@ -11,15 +11,17 @@ import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
-import { fetchAPI } from '../../../../../lib/api';
-import FormSection from '../../../../../components/ApplicationForm/FormSection';
 import FormIntroSection from '../../../../../components/ApplicationForm/FormIntroSection';
+import FormSection from '../../../../../components/ApplicationForm/FormSection';
+import { Layout } from '../../../../../components/Layout';
+import alreadyApplied from '../../../../../constants/constants';
+import { fetchAPI } from '../../../../../lib/api';
 
 SwiperCore.use([Keyboard]);
 
 export default function MentorshipApplicationPage({ global, pageContent }) {
   const {
-    attributes: { footer },
+    attributes: { favicon, siteName, footer },
   } = global;
   const cld = new Cloudinary({
     cloud: {
@@ -34,87 +36,95 @@ export default function MentorshipApplicationPage({ global, pageContent }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const data = new FormData(event.target);
-    console.log(data);
     const formDataObj = {};
 
     /* eslint-disable-next-line no-return-assign */
     data.forEach((value, key) => (formDataObj[key] = value));
 
-    console.log(formDataObj);
+    // check the email of the formDataObj. if it already exists,
+    // log a message and redirect to the homescreen
+    if (alreadyApplied(formDataObj.email, formDataObj.fullname)) {
+      alert('You have already applied. Redirecting to the homescreen.');
+      router.push('/');
+      return;
+    }
 
     const endpoint = '/api/forms/applications/mentorship-program';
-
     const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: formDataObj,
+      method: 'post',
+      body: data,
     };
-
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result.data);
+    console.log(result);
     const currentPath = router.asPath;
-    router.push(`${currentPath}complete`);
+    // redirect to status complete page
+    router.push(`${currentPath}/complete`);
   };
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex flex-col flex-grow h-screen bg-primary-blue">
-        <Link href="/" passHref>
-          <a className="h-24 w-fit">
-            <div className="absolute h-20 mt-8 ml-14">
-              {footer
-                /* eslint-disable-next-line no-underscore-dangle */
-                .filter((navItem) => navItem.__component === 'images.nav-brand')
-                .map((image) => (
-                  <AdvancedImage
-                    key={1}
-                    className="object-cover object-center h-full lg:h-10 lg:w-full w-3/5"
-                    cldImg={cld.image(
-                      image.navBrand.data.attributes.provider_metadata
-                        .public_id,
-                    )}
-                  />
-                ))}
-            </div>
-          </a>
-        </Link>
 
-        <div className="absolute h-20 mt-6 mr-14 right-0">
-          <span className="text-secondary-blue font-cursive text-2xl">
-            Elevate Mentorship Program Application
-          </span>
-        </div>
-        <Swiper
-          scrollbar={{
-            hide: false,
-            draggable: true,
-          }}
-          keyboard={{
-            enabled: true,
-          }}
-          cssMode
-          centeredSlides
-          modules={[Scrollbar]}
-        >
-          <SwiperSlide>
-            <FormIntroSection
-              title={pageHeader.pageTitle}
-              introText={pageHeader.caption}
-              direction="right"
-            />
-          </SwiperSlide>
-          {formSections.map((section) => (
-            <SwiperSlide key={uuidv4()}>
-              <FormSection data={section} />
+  return (
+    <Layout
+      siteName={siteName}
+      favicon={favicon}
+      currentPage="Elevate Mentorship Program Application"
+    >
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-col flex-grow h-screen bg-primary-blue">
+          <Link href="/" passHref>
+            <a className="h-24 w-fit">
+              <div className="absolute h-20 mt-8 ml-14">
+                {footer
+                  /* eslint-disable-next-line no-underscore-dangle */
+                  .filter((navItem) => navItem.__component === 'images.nav-brand')
+                  .map((image) => (
+                    <AdvancedImage
+                      key={1}
+                      className="object-cover object-center h-full lg:h-10 lg:w-full w-3/5"
+                      cldImg={cld.image(
+                        image.navBrand.data.attributes.provider_metadata
+                          .public_id,
+                      )}
+                    />
+                  ))}
+              </div>
+            </a>
+          </Link>
+          <div className="absolute h-20 mt-6 mr-14 right-0">
+            <span className="text-secondary-blue font-cursive text-2xl">
+              Elevate Mentorship Program Application
+            </span>
+          </div>
+          <Swiper
+            scrollbar={{
+              hide: false,
+              draggable: true,
+            }}
+            keyboard={{
+              enabled: true,
+            }}
+            cssMode
+            centeredSlides
+            modules={[Scrollbar]}
+          >
+            <SwiperSlide>
+              <FormIntroSection
+                title={pageHeader.pageTitle}
+                introText={pageHeader.caption}
+                direction="right"
+              />
             </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </form>
+            {formSections.map((section) => (
+              <SwiperSlide key={uuidv4()}>
+                <FormSection data={section} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </form>
+    </Layout>
   );
 }
 
