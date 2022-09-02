@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import ContactFormInput from './ContactFormInput';
 import Container from '../Container';
 
@@ -40,7 +41,7 @@ export default function ContactForm({ data }) {
                       <form>
                         <div className="grid grid-cols-1 gap-6 w-full ">
                           {fields.map((field) => (
-                            <ContactFormInput field={field} />
+                            <ContactFormInput key={uuidv4} field={field} />
                           ))}
                           <button
                             type="submit"
