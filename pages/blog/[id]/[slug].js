@@ -39,7 +39,8 @@ export default function BlogPost({ global, post }) {
         <AdvancedImage
           className="object-cover object-center h-full w-full"
           cldImg={cld.image(
-            coverMedia.data.attributes.provider_metadata.public_id,
+            coverMedia.data.attributes.formats.large.provider_metadata
+              .public_id,
           )}
         />
       </div>

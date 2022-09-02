@@ -49,7 +49,9 @@ export default function AppCarousel({ data }) {
             <div className="absolute bg-primary-blue opacity-60 h-full w-full" />
             <AdvancedImage
               className="object-cover object-center h-full w-full"
-              cldImg={cld.image(image.attributes.provider_metadata.public_id)}
+              cldImg={cld.image(
+                image.attributes.formats.large.provider_metadata.public_id,
+              )}
             />
           </div>
         </Carousel.Item>
