@@ -3,7 +3,7 @@ import ProfileCatalogEntry from './ProfileCatalogEntry';
 export default function TabsSection({ tabs }) {
   return (
     <>
-      <ul className="nav nav-tabs" id="myTab" role="tablist">
+      <ul className="nav nav-tabs mt-4" id="myTab" role="tablist">
         <li className="nav-item" role="presentation">
           <button
             className="nav-link active"
