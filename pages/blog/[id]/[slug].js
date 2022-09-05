@@ -12,7 +12,7 @@ export default function BlogPost({ global, post }) {
       cloudName: 'elevate-steps',
     },
     url: {
-      secure: true, // force https, set to false to force http
+      secure: true,
     },
   });
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });

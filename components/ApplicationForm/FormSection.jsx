@@ -15,6 +15,7 @@ SwiperCore.use([Keyboard]);
 
 export default function FormSection({ data }) {
   const { title, introText, fields } = data;
+
   return (
     <Swiper
       className="mySwiper2 swiper-v"
