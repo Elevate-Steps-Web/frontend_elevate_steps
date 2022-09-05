@@ -13,7 +13,7 @@ export default function ApplicationComplete({ global }) {
       cloudName: 'elevate-steps',
     },
     url: {
-      secure: true, // force https, set to false to force http
+      secure: true,
     },
   });
   return (

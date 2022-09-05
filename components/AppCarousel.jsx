@@ -15,7 +15,7 @@ export default function AppCarousel({ data }) {
       cloudName: 'elevate-steps',
     },
     url: {
-      secure: true, // force https, set to false to force http
+      secure: true,
     },
   });
   return (

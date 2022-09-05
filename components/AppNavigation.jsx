@@ -61,7 +61,7 @@ function AppNavigation({ nav }) {
       cloudName: 'elevate-steps',
     },
     url: {
-      secure: true, // force https, set to false to force http
+      secure: true,
     },
   });
   // filter the brand image out of array and conditionally render it
