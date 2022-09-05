@@ -1,10 +1,14 @@
 import { useSwiper } from 'swiper/react';
 
-export default function BouncingArrow({ direction, parentHandle }) {
-  let swiper = useSwiper();
-  if (typeof parentHandle !== 'undefined') {
-    console.log(parentHandle);
-    swiper = parentHandle;
+export default function BouncingArrow({ direction, changeParentSlide }) {
+  const swiper = useSwiper();
+
+  function handleClick() {
+    if (changeParentSlide) {
+      changeParentSlide();
+    } else {
+      swiper.slideNext();
+    }
   }
 
   function renderArrow(dir) {
@@ -38,7 +42,7 @@ export default function BouncingArrow({ direction, parentHandle }) {
     }
   }
   return (
-    <button type="button" onClick={() => swiper.slideNext()}>
+    <button type="button" onClick={handleClick}>
       {renderArrow(direction)}
     </button>
   );
