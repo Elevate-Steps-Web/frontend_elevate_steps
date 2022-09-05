@@ -1,8 +1,10 @@
 /* eslint-disable import/no-unresolved */
+/* eslint-disable react/jsx-no-bind */
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import SwiperCore, { Keyboard, Pagination } from 'swiper';
 
 import React from 'react';
@@ -14,7 +16,13 @@ import FormIntroSection from './FormIntroSection';
 SwiperCore.use([Keyboard]);
 
 export default function FormSection({ data }) {
+  const swiper = useSwiper();
+
   const { title, introText, fields } = data;
+
+  function changeSlide() {
+    return swiper.slideNext();
+  }
 
   return (
     <Swiper
@@ -51,7 +59,7 @@ export default function FormSection({ data }) {
             <span className="text-2xl lg:text-4xl font-cursive text-green lg:mr-10 px-14 py-5 lg:px-0 lg:w-3/5">
               All done with this section! Press the right arrow key to continue!
             </span>
-            <BouncingArrow direction="right" />
+            <BouncingArrow direction="right" changeParentSlide={changeSlide} />
           </div>
         </SwiperSlide>
       )}
