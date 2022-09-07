@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 const fadeOutAnimation = keyframes`${fadeOut}`;
 const FadeOutDiv = styled.div`
-  animation: ${fadeOutAnimation} 1.5s;
+  animation: ${fadeOutAnimation} 0.5s;
   opacity: 0;
   animation-fill-mode: forwards;
 `;
@@ -30,22 +30,22 @@ function Loading() {
       router.events.off('routeChangeComplete', handleComplete);
       router.events.off('routeChangeError', handleComplete);
     };
-  });
+  }, []);
 
-  return (
-    loading && (
-      <FadeOutDiv>
-        <div className="w-screen h-screen bg-primary-blue flex flex-row items-center">
-          <div className="flex flex-col justify-items-center w-fit h-fit mx-auto">
-            <GridLoader
-              color="#fff"
-              loading={loading}
-              className="transition-opacity"
-            />
-          </div>
+  return loading ? (
+    <FadeOutDiv>
+      <div className="w-screen h-screen bg-primary-blue flex flex-row items-center">
+        <div className="flex flex-col justify-items-center w-fit h-fit mx-auto">
+          <GridLoader
+            color="#fff"
+            loading={loading}
+            className="transition-opacity"
+          />
         </div>
-      </FadeOutDiv>
-    )
+      </div>
+    </FadeOutDiv>
+  ) : (
+    <FadeOutDiv />
   );
 }
 
