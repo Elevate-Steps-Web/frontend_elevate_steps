@@ -4,6 +4,8 @@ import MarkdownIt from 'markdown-it';
 import _ from 'lodash';
 import parse from 'html-react-parser';
 import { Page } from '../../../components/Page';
+import ShareFacebook from '../../../components/socialMediaSharing/ShareFacebook';
+import ShareTwitter from '../../../components/socialMediaSharing/ShareTwitter';
 import { fetchAPI } from '../../../lib/api';
 
 export default function BlogPost({ global, post }) {
@@ -17,7 +19,7 @@ export default function BlogPost({ global, post }) {
   });
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const {
-    blogTitle, blogContent, coverMedia, author,
+    blogTitle, blogContent, coverMedia, author, locale,
   } = post.attributes;
   const content = md.render(blogContent);
   return (
@@ -35,6 +37,10 @@ export default function BlogPost({ global, post }) {
             </span>
             {author}
           </h2>
+        </div>
+        <div className="absolute flex flex-row bottom-0 right-0 p-2 px-8 md:px-12 md:py-8 lg:px-24 text-2xl gap-x-4">
+          <ShareTwitter locale={locale} />
+          <ShareFacebook />
         </div>
         <AdvancedImage
           className="object-cover object-center h-full w-full"

@@ -23,6 +23,7 @@ export function Layout({
       </Head>
       {children}
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" />
+      <Script src="https://platform.twitter.com/widgets.js" charset="utf-8" />
     </>
   );
 }
