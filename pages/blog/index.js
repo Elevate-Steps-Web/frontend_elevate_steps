@@ -30,7 +30,7 @@ export default function BlogHome({ global, blogPosts }) {
   );
 }
 
-export async function getStaticProps({ locale: routeLocale }) {
+export async function getServerSideProps({ locale: routeLocale }) {
   const blogPostsRes = await fetchAPI('/blog-posts', {
     populate: '*',
     locale: routeLocale,

@@ -1,7 +1,6 @@
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import MarkdownIt from 'markdown-it';
-import _ from 'lodash';
 import parse from 'html-react-parser';
 import { Page } from '../../../components/Page';
 import ShareFacebook from '../../../components/socialMediaSharing/ShareFacebook';
@@ -57,21 +56,7 @@ export default function BlogPost({ global, post }) {
   );
 }
 
-export async function getStaticPaths() {
-  const postRes = await fetchAPI('/blog-posts', { locale: 'all' });
-  return {
-    paths: postRes.data.map((post) => ({
-      params: {
-        id: post.id.toString(),
-        slug: _.kebabCase(post.attributes.blogTitle),
-      },
-      locale: post.attributes.locale,
-    })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params, locale: routeLocale }) {
+export async function getServerSideProps({ params, locale: routeLocale }) {
   const postRes = await fetchAPI('/blog-posts', {
     filters: {
       id: params.id,
@@ -81,6 +66,5 @@ export async function getStaticProps({ params, locale: routeLocale }) {
   });
   return {
     props: { post: postRes.data[0] },
-    revalidate: 1,
   };
 }

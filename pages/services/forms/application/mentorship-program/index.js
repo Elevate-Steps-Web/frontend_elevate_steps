@@ -128,7 +128,7 @@ export default function MentorshipApplicationPage({ global, pageContent }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // get Page properties
   const page = await fetchAPI('/mentorship-program-application', {
     populate: {
