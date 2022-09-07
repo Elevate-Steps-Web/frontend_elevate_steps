@@ -109,7 +109,7 @@ function AppNavigation({ nav }) {
           </svg>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav me-auto text-lg">
+          <div className="navbar-nav me-auto text-lg gap-x-5">
             {nav.map((navItem) => renderItemOrDropdown(navItem))}
           </div>
           <div className="hidden flex flex-col lg:flex-row w-[200px] gap-y-3 lg:gap-y-0 lg:gap-x-4 lg:w-[180px] items-center">

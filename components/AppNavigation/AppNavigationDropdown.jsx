@@ -5,7 +5,7 @@ export default function AppNavigationDropdown({ title, navItems }) {
   return (
     <span className="nav-item dropdown">
       <span
-        className="nav-link dropdown-toggle text-white hover:text-secondary-blue"
+        className="nav-link dropdown-toggle text-white hover:text-secondary-blue tracking-wider"
         id="navbarDropdownMenuLink"
         role="button"
         data-bs-toggle="dropdown"
