@@ -29,7 +29,7 @@ export default function Contact({
   );
 }
 
-export async function getStaticProps({ locale: routeLocale }) {
+export async function getServerSideProps({ locale: routeLocale }) {
   // get Page properties
   const page = await fetchAPI('/contact', {
     populate: {

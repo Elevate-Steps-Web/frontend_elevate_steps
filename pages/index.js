@@ -37,8 +37,7 @@ export default function Home({
   );
 }
 
-export async function getStaticProps({ locale: routeLocale }) {
-  // get Homepage properties
+export async function getServerSideProps({ locale: routeLocale }) {
   const homepage = await fetchAPI('/homepage', {
     populate: {
       content: {
@@ -50,14 +49,13 @@ export async function getStaticProps({ locale: routeLocale }) {
     },
     locale: routeLocale,
   });
-  // TODO: loop through objects and filter objects based on __component property
   const homepageContent = {};
   const {
     data: {
       attributes: { content },
     },
   } = homepage;
-  if (content === null) {
+  if (typeof content === 'undefined') {
     console.log('No data content in homepage.');
     return {
       notFound: true,
