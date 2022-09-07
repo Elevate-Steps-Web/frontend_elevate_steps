@@ -1,5 +1,7 @@
+import _ from 'lodash';
+
 export default function ContactFormInput({ field }) {
-  const { inputType, fieldName } = field;
+  const { inputType, fieldName, required } = field;
 
   function renderInput(type, name) {
     switch (type) {
@@ -7,6 +9,7 @@ export default function ContactFormInput({ field }) {
         return (
           <input
             id={name}
+            name={_.camelCase(name)}
             type="text"
             className="
                         mt-1
@@ -23,12 +26,14 @@ export default function ContactFormInput({ field }) {
                     focus:invalid:border-red-600 focus:invalid:ring-red-600
                     "
             placeholder=""
+            required={required}
           />
         );
       case 'Text Area':
         return (
           <textarea
             id={name}
+            name={_.camelCase(name)}
             className="
                         mt-1
                         block
@@ -45,6 +50,7 @@ export default function ContactFormInput({ field }) {
                     focus:valid:border-green focus:valid:ring-green
                     "
             rows="4"
+            required={required}
           />
         );
       case 'Email Address':
@@ -52,6 +58,7 @@ export default function ContactFormInput({ field }) {
           <input
             type="email"
             id={name}
+            name={_.camelCase(name)}
             className="
                         mt-1
                         block
@@ -69,6 +76,7 @@ export default function ContactFormInput({ field }) {
                     focus:valid:border-green focus:valid:ring-green
                     "
             placeholder="john@example.com"
+            required={required}
           />
         );
       case 'Telephone':
@@ -76,6 +84,7 @@ export default function ContactFormInput({ field }) {
           <input
             id={name}
             type="tel"
+            name={_.camelCase(name)}
             className="
                         mt-1
                         block
@@ -93,12 +102,14 @@ export default function ContactFormInput({ field }) {
                     "
             placeholder=""
             pattern="^\+([0-9]){9,}$"
+            required={required}
           />
         );
       default:
         return (
           <input
             id={name}
+            name={_.camelCase(name)}
             type="text"
             className="
                         mt-1
@@ -114,7 +125,8 @@ export default function ContactFormInput({ field }) {
                     valid:border-green invalid:border-red-600
                     focus:invalid:border-red-600 focus:invalid:ring-red-600
                     "
-            placeholder=""
+            placeholder="default"
+            required={required}
           />
         );
     }
@@ -123,7 +135,8 @@ export default function ContactFormInput({ field }) {
   return (
     <label className="block" htmlFor={fieldName}>
       <span className="text-orange font-medium text-lg">{fieldName}</span>
-      {renderInput(inputType)}
+      {required && <span className="text-orange inline">{' *'}</span>}
+      {renderInput(inputType, fieldName)}
     </label>
   );
 }
