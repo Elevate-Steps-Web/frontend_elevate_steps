@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
 import ContactFormInput from './ContactFormInput';
 import Container from '../Container';
@@ -5,6 +6,30 @@ import Container from '../Container';
 export default function ContactForm({ data }) {
   const { title, fields, submit } = data;
   const id = 1;
+  const router = useRouter();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formdata = new FormData(event.target);
+    const formDataObj = {};
+
+    /* eslint-disable-next-line no-return-assign */
+    formdata.forEach((value, key) => (formDataObj[key] = value));
+
+    const endpoint = '/api/forms/contact';
+    const options = {
+      method: 'post',
+      body: data,
+    };
+    const response = await fetch(endpoint, options);
+
+    const result = await response.json();
+    console.log(result);
+    // redirect to homepage
+    router.push('/');
+  };
+
   return (
     <Container>
       <div className="flex flex-row justify-center w-full mb-24">
@@ -38,7 +63,7 @@ export default function ContactForm({ data }) {
                 <div className="accordion-body">
                   <div className="flex flex-row justify-center">
                     <div className="mt-4 flex-1">
-                      <form>
+                      <form onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 gap-6 w-full ">
                           {fields.map((field) => (
                             <ContactFormInput key={uuidv4} field={field} />

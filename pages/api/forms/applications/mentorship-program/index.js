@@ -20,19 +20,23 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.post(async (req, res) => {
-  const writeStream = fs.createWriteStream('./tmp/temp.md', { flags: 'a' });
   const { fullname } = req.body;
+  const tmpFilePath = `./.externalFiles/${fullname}/${fullname}.md`;
+
+  const writeStream = fs.createWriteStream(
+    `./.externalFiles/${fullname}/${fullname}.md`,
+    { flags: 'a' },
+  );
 
   //  parse the json entries into md
-  let entry = json2md({ h2: `Application for ${fullname}` });
+  let entry = json2md({ h1: `Application for ${fullname}` });
   writeStream.write(`${entry}\n`);
   Object.keys(req.body).forEach((key) => {
     entry = json2md([{ h2: _.startCase(key) }, { p: req.body[key] }]);
     writeStream.write(`${entry}\n`);
   });
   writeStream.end();
-  const filePath = `./tmp/${fullname}.pdf`;
-  const tmpFilePath = './tmp/temp.md';
+  const filePath = `./.externalFiles/${fullname}/${fullname}.pdf`;
 
   markdownpdf()
     .from(tmpFilePath)
@@ -47,16 +51,7 @@ handler.post(async (req, res) => {
           folder: 'applications/mentorship-program/candidates',
           resource_type: 'auto',
         };
-        await cloudinary.uploader.upload(filePath, options).then(() => {
-          // console.log(result);
-          // delete both files on the server
-          [tmpFilePath, filePath].forEach((file) => {
-            fs.unlink(file, (err) => {
-              if (err) throw err;
-              console.log(`${file} deleted`);
-            });
-          });
-        });
+        await cloudinary.uploader.upload(filePath, options);
       } catch (error) {
         console.error(error);
       }
