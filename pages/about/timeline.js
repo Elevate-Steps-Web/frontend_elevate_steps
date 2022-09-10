@@ -3,12 +3,15 @@ import parse from 'html-react-parser';
 import Link from 'next/link';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
+import TimelineTable from '../../components/TimelineTable';
 
 export default function Timeline({ global, pageData }) {
-  const { pageHeader, pageDescription, cta } = pageData.attributes;
+  const {
+    pageHeader, pageDescription, cta, timeline,
+  } = pageData.attributes;
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const content = md.render(pageDescription);
-  console.log(cta.header);
+  console.log(pageData.attributes);
   return (
     <Page global={global} currentPage="Who We Are">
       <div className="bg-white pt-12" id="page-header">
@@ -19,6 +22,9 @@ export default function Timeline({ global, pageData }) {
       <div className="bg-white py-6 px-8 md:px-16 lg:px-32 lg:py-12 xl:px-72">
         <div className="pb-12">
           <div className="markdown">{parse(content)}</div>
+        </div>
+        <div className="pb-24 lg:px-8 place-items-center">
+          <TimelineTable timeline={timeline} />
         </div>
         <div className="pb-24 flex flex-col gap-2 justify-center">
           {cta.header && (
