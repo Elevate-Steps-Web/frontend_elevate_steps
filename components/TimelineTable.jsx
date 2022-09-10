@@ -15,7 +15,10 @@ export default function TimelineTable({ timeline }) {
 
 function TimelineEvent({ title, description, month }) {
   return (
-    <div className="milestone flex flex-col lg:grid lg:grid-cols-4 lg:px-8">
+    <div
+      className="milestone flex flex-col lg:grid lg:grid-cols-4 lg:px-8"
+      id={`ms-${title}`}
+    >
       <div className="flex flex-col col text-center lg:text-right lg:pr-8 py-4 lg:py-0">
         <h3 className="text-xl md:text-2xl text-primary-blue">{title}</h3>
         <p className="font-cursive text-lg md:text-xl text-green">{month}</p>

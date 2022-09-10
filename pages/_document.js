@@ -14,7 +14,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body className="bg-white overflow-visible">
+      <body className="font-sans bg-white overflow-visible">
         <Main />
         <NextScript />
       </body>
