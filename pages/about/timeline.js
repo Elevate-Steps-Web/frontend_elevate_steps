@@ -1,11 +1,12 @@
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
 import Link from 'next/link';
+import TimelineGraphic from '../../components/TimelineGraphic';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
 import TimelineTable from '../../components/TimelineTable';
 
-export default function Timeline({ global, pageData }) {
+export default function TimelinePage({ global, pageData }) {
   const {
     pageHeader, pageDescription, cta, timeline,
   } = pageData.attributes;
@@ -19,9 +20,12 @@ export default function Timeline({ global, pageData }) {
           {pageHeader}
         </h1>
       </div>
-      <div className="bg-white py-6 px-8 md:px-16 lg:px-32 lg:py-12 xl:px-72">
+      <div className="bg-white py-6 px-4 md:px-16 lg:px-32 lg:py-12 xl:px-72">
         <div className="pb-12">
           <div className="markdown">{parse(content)}</div>
+        </div>
+        <div>
+          <TimelineGraphic timeline={timeline} />
         </div>
         <div className="pb-24 lg:px-8 place-items-center">
           <TimelineTable timeline={timeline} />
