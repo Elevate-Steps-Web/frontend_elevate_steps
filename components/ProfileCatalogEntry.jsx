@@ -5,7 +5,7 @@ export default function ProfileCatalogEntry({
   firstName,
   middleName,
   lastName,
-  graduationDate = NaN,
+  // graduationDate = NaN,
   socialMedia,
   position,
   email,
@@ -34,7 +34,7 @@ export default function ProfileCatalogEntry({
       secure: true, // force https, set to false to force http
     },
   });
-  console.log(graduationDate);
+  // console.log(firstName, lastName);
   const fullName = middleName
     ? `${firstName} ${middleName} ${lastName}`
     : `${firstName} ${lastName}`;
@@ -78,6 +78,7 @@ export default function ProfileCatalogEntry({
           <div className="space-x-2">
             {socialMedia.map((sm) => (
               <a
+                key={sm.platform}
                 className="text-primary-blue hover:underline"
                 href={sm.linkRoute}
               >
