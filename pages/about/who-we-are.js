@@ -1,12 +1,11 @@
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
+import Link from 'next/link';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
 
 export default function WhoWeAre({ global, pageData }) {
-  const {
-    pageHeader, pageContent, cta, downloadAsset,
-  } = pageData.attributes;
+  const { pageHeader, pageContent, cta } = pageData.attributes;
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const content = md.render(pageContent);
   return (
@@ -27,13 +26,11 @@ export default function WhoWeAre({ global, pageData }) {
                 {cta.header}
               </h3>
             )}
-            <a
-              role="button"
-              href={downloadAsset.data.attributes.url}
-              className="text-2xl hover:text-primary-blue btn btn-green hover:bg-green text-green hover:border-green border-green mt-4 lg:mx-auto"
-            >
-              {cta.linkText}
-            </a>
+            <Link href={cta.linkRoute}>
+              <a className="text-center text-green hover:text-secondary-blue text-xl">
+                {cta.linkText}
+              </a>
+            </Link>
           </div>
         )}
       </div>
