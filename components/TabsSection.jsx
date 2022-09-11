@@ -1,37 +1,26 @@
 import ProfileCatalogEntry from './ProfileCatalogEntry';
 
 export default function TabsSection({ tabs }) {
+  console.log(tabs);
   return (
     <>
       <ul className="nav nav-tabs mt-4" id="myTab" role="tablist">
-        <li className="nav-item" role="presentation">
-          <button
-            className="nav-link active"
-            id="mentors-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#mentors-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="mentors-tab-pane"
-            aria-selected="true"
-          >
-            Mentors
-          </button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            className="nav-link"
-            id="fellows-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#fellows-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="fellows-tab-pane"
-            aria-selected="false"
-          >
-            Fellows
-          </button>
-        </li>
+        {tabs.map((tab, index) => (
+          <li className="nav-item" role="presentation" key={tab.name}>
+            <button
+              className={`nav-link ${index === 0 && 'active'}`}
+              id={`${tab.name}-tab`}
+              data-bs-toggle="tab"
+              data-bs-target={`#${tab.name}-tab-pane`}
+              type="button"
+              role="tab"
+              aria-controls={`${tab.name}-tab-pane`}
+              aria-selected={index === 0}
+            >
+              {tab.name}
+            </button>
+          </li>
+        ))}
       </ul>
       <div className="tab-content" id="myTabContent">
         {tabs.map((tab, index) => (
