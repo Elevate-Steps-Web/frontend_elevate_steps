@@ -8,7 +8,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['Avenir Next Cyrl', 'sans-serif'],
+      sans: ['Avenir Next', 'sans-serif'],
       cursive: ['Delius Swash Caps', 'cursive'],
     },
     extend: {
