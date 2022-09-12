@@ -2,11 +2,11 @@ import Link from 'next/link';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
 import Container from '../../../../components/Container';
+/* eslint-disable no-unused-vars */
 import { Page } from '../../../../components/Page';
 import { fetchAPI } from '../../../../lib/api';
 
-export default function MentorshipProgramsPage({ global, pageData }) {
-  console.log(pageData);
+export default function MentorshipProgramsPage({ global, pageData, notFound }) {
   const {
     attributes: {
       pageHeader: { pageTitle, caption },
@@ -59,5 +59,11 @@ export async function getServerSideProps({ locale: routeLocale }) {
     populate: '*',
     locale: routeLocale,
   });
+  if (page.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   return { props: { pageData: page.data } };
 }

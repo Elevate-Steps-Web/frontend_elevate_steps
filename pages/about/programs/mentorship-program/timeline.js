@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
 import { Page } from '../../../../components/Page';
@@ -5,7 +6,7 @@ import TimelineGraphic from '../../../../components/TimelineGraphic';
 import TimelineTable from '../../../../components/TimelineTable';
 import { fetchAPI } from '../../../../lib/api';
 
-export default function TimelinePage({ global, pageData }) {
+export default function TimelinePage({ global, pageData, notFound }) {
   const {
     pageHeader,
     pageDescription,
@@ -16,7 +17,6 @@ export default function TimelinePage({ global, pageData }) {
   } = pageData.attributes;
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const content = md.render(pageDescription);
-  console.log(pageData.attributes);
   return (
     <Page global={global} currentPage="Mentorship Program Timeline">
       <div className="bg-white pt-12" id="page-header">
@@ -76,5 +76,11 @@ export async function getServerSideProps({ locale: routeLocale }) {
     populate: '*',
     locale: routeLocale,
   });
+  if (page.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   return { props: { pageData: page.data } };
 }

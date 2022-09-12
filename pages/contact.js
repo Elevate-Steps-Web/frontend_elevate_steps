@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import ContactEmails from '../components/Contact/ContactEmails';
 import ContactForm from '../components/Contact/ContactForm';
 import ContactPhoneNumbers from '../components/Contact/ContactPhoneNumbers';
@@ -15,6 +16,7 @@ export default function Contact({
     contactPhones,
     contactForm,
   },
+  notFound,
 }) {
   return (
     <Page global={global} currentPage="Contact Us">
@@ -42,6 +44,12 @@ export async function getServerSideProps({ locale: routeLocale }) {
     },
     locale: routeLocale,
   });
+  if (page.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   // TODO: loop through objects and filter objects based on __component property
   const pageContent = {};
   const {
@@ -49,12 +57,6 @@ export async function getServerSideProps({ locale: routeLocale }) {
       attributes: { content },
     },
   } = page;
-  if (content === null) {
-    console.log('No data content in contact page.');
-    return {
-      notFound: true,
-    };
-  }
   content.forEach((item) => {
     /* eslint-disable-next-line no-underscore-dangle */
     switch (item.__component) {

@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
 
-export default function WhoWeAre({ global, pageData }) {
+export default function WhoWeAre({ global, pageData, notFound }) {
   const {
     pageHeader, pageContent, cta, downloadAsset,
   } = pageData.attributes;
@@ -46,6 +47,11 @@ export async function getServerSideProps({ locale: routeLocale }) {
     populate: '*',
     locale: routeLocale,
   });
-  console.log(routeLocale);
+  if (page.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   return { props: { pageData: page.data } };
 }

@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
+
 import '../styles/globals.css';
 
 import App from 'next/app';
 import { createContext } from 'react';
 import Loading from '../components/LoadingScreen';
-// import type { AppProps } from 'next/app'
 import { fetchAPI } from '../lib/api';
 
 // Store Strapi Global object in context
