@@ -31,7 +31,9 @@ export default function WhoWeAre({ global, pageData, notFound }) {
             <a
               role="button"
               href={downloadAsset.data.attributes.url}
+              target="_blank"
               className="text-2xl hover:text-primary-blue btn btn-green hover:bg-green text-green hover:border-green border-green mt-4 lg:mx-auto"
+              rel="noreferrer"
             >
               {cta.linkText}
             </a>
