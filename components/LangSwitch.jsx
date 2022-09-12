@@ -24,7 +24,7 @@ export default function LangSwitch() {
             <LanguageOutlinedIcon />
           </div>
           {switcherOptions[currLocale].value}
-          <span className="ml-2 dropdown-toggle lg:hidden" />
+          <span className="ml-2 dropdown-toggle" />
         </button>
         <div
           className="dropdown-menu dropdown-menu-lg-end px-2 bg-secondary-blue border-orange lg:bg-white lg:border-none"
