@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
-import Link from 'next/link';
 import { Page } from '../../components/Page';
 import TabsSection from '../../components/TabsSection';
 import { fetchAPI } from '../../lib/api';
@@ -77,7 +77,7 @@ export async function getServerSideProps({ locale: routeLocale }) {
     },
   } = page;
   if (mentors === null && fellows === null) {
-    console.log('No data content in contact page.');
+    console.log('No data content in page.');
     return {
       notFound: true,
     };

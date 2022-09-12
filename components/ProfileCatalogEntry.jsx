@@ -5,7 +5,6 @@ export default function ProfileCatalogEntry({
   firstName,
   middleName,
   lastName,
-  // graduationDate = NaN,
   socialMedia,
   position,
   email,
@@ -31,10 +30,9 @@ export default function ProfileCatalogEntry({
       cloudName: 'elevate-steps',
     },
     url: {
-      secure: true, // force https, set to false to force http
+      secure: true,
     },
   });
-  // console.log(firstName, lastName);
   const fullName = middleName
     ? `${firstName} ${middleName} ${lastName}`
     : `${firstName} ${lastName}`;
@@ -59,7 +57,7 @@ export default function ProfileCatalogEntry({
       >
         <div>
           <h2
-            className="text-lg md:text-xl md:text-2xl font-cursive text-primary-blue"
+            className="text-lg md:text-2xl font-cursive text-primary-blue"
             id="name"
           >
             {fullName}
