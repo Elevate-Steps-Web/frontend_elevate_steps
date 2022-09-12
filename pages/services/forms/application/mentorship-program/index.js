@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unresolved */
+/* eslint-disable no-underscore-dangle */
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
@@ -11,6 +12,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
+import Container from '../../../../../components/Container';
 import FormIntroSection from '../../../../../components/ApplicationForm/FormIntroSection';
 import FormSection from '../../../../../components/ApplicationForm/FormSection';
 import { Layout } from '../../../../../components/Layout';
@@ -19,7 +21,11 @@ import { fetchAPI } from '../../../../../lib/api';
 
 SwiperCore.use([Keyboard]);
 
-export default function MentorshipApplicationPage({ global, pageContent }) {
+export default function MentorshipApplicationPage({
+  global,
+  pageContent,
+  isApplicationOpen,
+}) {
   const {
     attributes: { favicon, siteName, footer },
   } = global;
@@ -71,59 +77,93 @@ export default function MentorshipApplicationPage({ global, pageContent }) {
       favicon={favicon}
       currentPage="Elevate Mentorship Program Application"
     >
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col flex-grow h-screen bg-primary-blue justify-center lg:justify-start  lg:items-start items-center ">
-          <Link href="/" passHref>
-            <a className="h-24 w-fit">
-              <div className="lg:absolute lg:h-20 h-10 lg:mt-8 lg:ml-14 mt-6 ml-4">
-                {footer
-                  /* eslint-disable-next-line no-underscore-dangle */
-                  .filter((navItem) => navItem.__component === 'images.nav-brand')
-                  .map((image) => (
-                    <AdvancedImage
-                      key={1}
-                      className="object-cover object-center h-full lg:h-10 lg:w-full"
-                      cldImg={cld.image(
-                        image.navBrand.data.attributes.provider_metadata
-                          .public_id,
-                      )}
-                    />
-                  ))}
-              </div>
-            </a>
-          </Link>
-          <div className="lg:absolute lg:h-20 lg:mt-6 lg:mr-14 lg:right-0 md:mb-0 text-center mt-4 pb-2">
-            <span className="text-secondary-blue font-cursive text-2xl">
-              Elevate Mentorship Program Application
-            </span>
-          </div>
-          <Swiper
-            scrollbar={{
-              hide: false,
-              draggable: true,
-            }}
-            keyboard={{
-              enabled: true,
-            }}
-            cssMode
-            centeredSlides
-            modules={[Scrollbar]}
-          >
-            <SwiperSlide>
-              <FormIntroSection
-                title={pageHeader.pageTitle}
-                introText={pageHeader.caption}
-                direction="right"
-              />
-            </SwiperSlide>
-            {formSections.map((section) => (
-              <SwiperSlide key={uuidv4()}>
-                <FormSection data={section} />
+      {isApplicationOpen ? (
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col flex-grow h-screen bg-primary-blue justify-center lg:justify-start  lg:items-start items-center ">
+            <Link href="/" passHref>
+              <a className="h-24 w-fit">
+                <div className="lg:absolute lg:h-20 h-10 lg:mt-8 lg:ml-14 mt-6 ml-4">
+                  {footer
+                    .filter(
+                      (navItem) => navItem.__component === 'images.nav-brand',
+                    )
+                    .map((image) => (
+                      <AdvancedImage
+                        key={1}
+                        className="object-cover object-center h-full lg:h-10 lg:w-full"
+                        cldImg={cld.image(
+                          image.navBrand.data.attributes.provider_metadata
+                            .public_id,
+                        )}
+                      />
+                    ))}
+                </div>
+              </a>
+            </Link>
+            <div className="lg:absolute lg:h-20 lg:mt-6 lg:mr-14 lg:right-0 md:mb-0 text-center mt-4 pb-2">
+              <span className="text-secondary-blue font-cursive text-2xl">
+                Elevate Mentorship Program Application
+              </span>
+            </div>
+            <Swiper
+              scrollbar={{
+                hide: false,
+                draggable: true,
+              }}
+              keyboard={{
+                enabled: true,
+              }}
+              cssMode
+              centeredSlides
+              modules={[Scrollbar]}
+            >
+              <SwiperSlide>
+                <FormIntroSection
+                  title={pageHeader.pageTitle}
+                  introText={pageHeader.caption}
+                  direction="right"
+                />
               </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </form>
+              {formSections.map((section) => (
+                <SwiperSlide key={uuidv4()}>
+                  <FormSection data={section} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </form>
+      ) : (
+        <Container>
+          <div className="flex flex-col items-center justify-center h-screen w-full flex-grow bg-white">
+            <h1 className="text-orange text-4xl text-center px-4 md:px-24">
+              <span>Application currently unavailable!</span>
+              <span className="block mt-5">
+                Click on the logo below and head on back to the homepage!
+              </span>
+            </h1>
+            <Link href="/" passHref>
+              <a className="h-36 lg:h-56 w-fit">
+                <div className="h-18 md:h-32 mt-24 bounce-down">
+                  {footer
+                    .filter(
+                      (navItem) => navItem.__component === 'images.nav-brand',
+                    )
+                    .map((image) => (
+                      <AdvancedImage
+                        key={1}
+                        className="object-cover object-center h-full lg:h-32 w-fit"
+                        cldImg={cld.image(
+                          image.navBrand.data.attributes.provider_metadata
+                            .public_id,
+                        )}
+                      />
+                    ))}
+                </div>
+              </a>
+            </Link>
+          </div>
+        </Container>
+      )}
     </Layout>
   );
 }
@@ -144,12 +184,11 @@ export async function getServerSideProps() {
       },
     },
   });
-  // TODO: loop through objects and filter objects based on __component property
   const pageContent = {};
   pageContent.formSections = [];
   const {
     data: {
-      attributes: { content },
+      attributes: { content, isApplicationOpen },
     },
   } = page;
   if (content === null) {
@@ -172,5 +211,5 @@ export async function getServerSideProps() {
         console.error('Component not categorized. Not rendering.');
     }
   });
-  return { props: { pageContent } };
+  return { props: { pageContent, isApplicationOpen } };
 }
