@@ -1,8 +1,8 @@
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+import Flag from 'react-flagpack';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Flag from 'react-flagpack';
 
 export default function LangSwitch() {
   const router = useRouter();
@@ -12,15 +12,15 @@ export default function LangSwitch() {
     fr: { value: 'Français', flagCode: 'FR' },
   };
   return (
-    <div className="lg:text-white font-normal">
+    <div className="md:text-white font-normal">
       <div className="dropdown">
         <button
           id="dropdownMenuButton"
           data-bs-toggle="dropdown"
-          className="text-2xl lg:text-lg flex items-center hover:text-orange lg:hover:text-secondary-blue"
+          className="text-xl lg:text-lg flex items-center hover:text-orange lg:hover:text-secondary-blue"
           type="button"
         >
-          <div className="lg:inline-flex items-center mr-2 hidden">
+          <div className="md:inline-flex items-center mr-2 hidden">
             <LanguageOutlinedIcon />
           </div>
           {switcherOptions[currLocale].value}

@@ -66,7 +66,7 @@ function AppNavigation({ nav }) {
   });
   // filter the brand image out of array and conditionally render it
   return (
-    <nav className="navbar navbar-expand-lg bg-primary-blue">
+    <nav className="navbar navbar-expand-md bg-primary-blue">
       <div className="container-fluid px-8 md:px-12 lg:px-14 2xl:max-w-screen-2xl space-x-5">
         <Link href="/" passHref>
           <a className="navbar-brand">
@@ -87,7 +87,7 @@ function AppNavigation({ nav }) {
           </a>
         </Link>
         <button
-          className="d-lg-none active:border-white focus:ring focus:ring-white focus:outline-none focus:rounded"
+          className="d-md-none active:border-white focus:ring focus:ring-white focus:outline-none focus:rounded"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasExample"
