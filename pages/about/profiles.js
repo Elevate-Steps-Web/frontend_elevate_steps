@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Link from 'next/link';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
@@ -11,6 +12,7 @@ export default function ProfilesPage({
   pageHeader,
   pageContent,
   cta,
+  notFound,
 }) {
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const content = md.render(pageContent);
@@ -63,6 +65,12 @@ export async function getServerSideProps({ locale: routeLocale }) {
     },
     locale: routeLocale,
   });
+  if (page.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   const {
     data: {
       attributes: {

@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { BlogIntroSection } from '../../components/BlogIntroSection';
 import { BlogListSection } from '../../components/BlogListSection';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
 
-export default function BlogHome({ global, blogPosts }) {
+export default function BlogHome({ global, blogPosts, notFound }) {
   const latestBlog = blogPosts
     /* eslint-disable-next-line max-len */
     && blogPosts.reduce((prev, curr) => (Date.parse(prev.attributes.createdAt)
@@ -35,5 +36,11 @@ export async function getServerSideProps({ locale: routeLocale }) {
     populate: '*',
     locale: routeLocale,
   });
+  if (blogPostsRes.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   return { props: { blogPosts: blogPostsRes.data } };
 }

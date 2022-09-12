@@ -1,5 +1,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
+
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
@@ -25,6 +27,7 @@ export default function MentorshipApplicationPage({
   global,
   pageContent,
   isApplicationOpen,
+  notFound,
 }) {
   const {
     attributes: { favicon, siteName, footer },
@@ -184,6 +187,12 @@ export async function getServerSideProps() {
       },
     },
   });
+  if (page.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   const pageContent = {};
   pageContent.formSections = [];
   const {

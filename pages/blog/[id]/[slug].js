@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import MarkdownIt from 'markdown-it';
@@ -7,7 +8,7 @@ import ShareFacebook from '../../../components/socialMediaSharing/ShareFacebook'
 import ShareTwitter from '../../../components/socialMediaSharing/ShareTwitter';
 import { fetchAPI } from '../../../lib/api';
 
-export default function BlogPost({ global, post }) {
+export default function BlogPost({ global, post, notFound }) {
   const cld = new Cloudinary({
     cloud: {
       cloudName: 'elevate-steps',
@@ -64,6 +65,12 @@ export async function getServerSideProps({ params, locale: routeLocale }) {
     populate: '*',
     locale: routeLocale,
   });
+  if (postRes.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: { post: postRes.data[0] },
   };

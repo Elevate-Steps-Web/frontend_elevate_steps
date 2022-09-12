@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import Link from 'next/link';
 import Container from '../../../../../components/Container';
 import { Layout } from '../../../../../components/Layout';
 
-export default function ApplicationComplete({ global }) {
+export default function ApplicationComplete({ global, notFound }) {
   const {
     attributes: { favicon, siteName, footer },
   } = global;

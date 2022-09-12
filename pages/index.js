@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import AppCarousel from '../components/AppCarousel';
 import CTASection from '../components/CTASection';
 import FAQSection from '../components/FAQSection';
@@ -15,6 +16,7 @@ export default function Home({
     faeqSection,
     ctaSection,
   },
+  notFound,
 }) {
   return (
     <Page global={global} currentPage="Home">
@@ -49,18 +51,18 @@ export async function getServerSideProps({ locale: routeLocale }) {
     },
     locale: routeLocale,
   });
+  if (homepage.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   const homepageContent = {};
   const {
     data: {
       attributes: { content },
     },
   } = homepage;
-  if (typeof content === 'undefined') {
-    console.log('No data content in homepage.');
-    return {
-      notFound: true,
-    };
-  }
   content.forEach((item) => {
     /* eslint-disable-next-line no-underscore-dangle */
     switch (item.__component) {

@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 import Link from 'next/link';
 import { v4 as uuidv4 } from 'uuid';
 import Container from '../../../components/Container';
 import { Page } from '../../../components/Page';
 import { fetchAPI } from '../../../lib/api';
 
-export default function ProgramsPage({ global, pageData }) {
+export default function ProgramsPage({ global, pageData, notFound }) {
   const {
     attributes: {
       pageHeader: { pageTitle, caption },
@@ -43,5 +44,11 @@ export async function getServerSideProps({ locale: routeLocale }) {
     populate: '*',
     locale: routeLocale,
   });
+  if (page.error) {
+    console.log('Fetching data failed');
+    return {
+      notFound: true,
+    };
+  }
   return { props: { pageData: page.data } };
 }
