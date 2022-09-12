@@ -1,0 +1,19 @@
+.MuiTreeItem-label {
+  @apply text-2xl font-sans pl-0 w-auto !important;
+}
+
+.MuiTreeItem-iconContainer {
+  @apply order-last pr-0 !important;
+}
+
+.MuiTreeItem-iconContainer svg {
+  @apply text-2xl !important;
+}
+
+.MuiTreeItem-content {
+  @apply px-0 bg-transparent justify-start gap-x-4 !important;
+}
+
+.MuiCollapse-root .MuiCollapse-vertical {
+  @apply flex flex-col gap-y-4 !important;
+}
