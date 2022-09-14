@@ -12,7 +12,6 @@ export default function WhoWeAre({
 }) {
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const content = md.render(pageContent);
-  console.log(partnersSponsors);
   return (
     <Page global={global} currentPage="Partners And Sponsors">
       <div className="pt-12" id="page-header">
