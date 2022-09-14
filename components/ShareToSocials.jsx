@@ -1,6 +1,8 @@
 import {
   FacebookIcon,
   FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
   TelegramIcon,
   TelegramShareButton,
   TwitterIcon,
@@ -48,6 +50,12 @@ export default function ShareToSocials({ target, pageTitle }) {
           <TelegramShareButton url={URL + router.asPath} title={pageTitle}>
             <TelegramIcon size={36} round />
           </TelegramShareButton>
+        );
+      case 'LinkedIn':
+        return (
+          <LinkedinShareButton url={URL + router.asPath} title={pageTitle}>
+            <LinkedinIcon size={36} round />
+          </LinkedinShareButton>
         );
       default:
         return <span />;
