@@ -5,7 +5,7 @@ export default function AppFooterColumn({ title, footerItems }) {
   return (
     <div id={title} className="text-center flex-1">
       <h1 className="text-xl">{title}</h1>
-      <div className="text-secondary-blue md:text-sm text-lg flex flex-col xl:space-y-2 mt-2 font-light">
+      <div className="text-secondary-blue md:text-sm text-lg flex flex-col xl:space-y-2 mt-2 font-normal">
         {footerItems.map((footerItem) => (
           <AppFooterItem
             key={uuidv4()}

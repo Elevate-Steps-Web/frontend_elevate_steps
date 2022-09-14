@@ -47,7 +47,7 @@ export default function AppFooter({ footer }) {
         </div>
         <div
           id="copyright"
-          className="text-center py-10 text-secondary-blue font-light text-sm"
+          className="text-center py-10 text-secondary-blue font-normal text-sm"
         >
           <span>
             Copyright &copy;
