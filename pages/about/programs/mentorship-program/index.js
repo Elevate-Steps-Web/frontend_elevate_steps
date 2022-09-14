@@ -38,7 +38,7 @@ export default function MentorshipProgramsPage({ global, pageData, notFound }) {
               <h3 className="text-center font-cursive text-primary-blue text-3xl">
                 {cta.header}
               </h3>
-              <p className="text-xl font-light text-center lg:px-36 md:px-24">
+              <p className="text-xl font-normal text-center lg:px-36 md:px-24">
                 {cta.caption}
               </p>
             </>

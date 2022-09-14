@@ -1,5 +1,5 @@
 .markdown p {
-  @apply font-light text-lg md:text-xl text-black mb-8;
+  @apply font-normal text-lg md:text-xl text-black mb-8;
 }
 
 .markdown blockquote {
@@ -7,15 +7,15 @@
 }
 
 .markdown blockquote p {
-  @apply font-light text-lg md:text-xl text-black italic my-0;
+  @apply font-normal text-lg md:text-xl text-black italic my-0;
 }
 
 .markdown ul {
-  @apply list-disc px-4 text-lg md:text-xl font-light my-2;
+  @apply list-disc px-4 text-lg md:text-xl font-normal my-2;
 }
 
 .markdown ol {
-  @apply list-decimal px-4 text-lg md:text-xl font-light my-2;
+  @apply list-decimal px-4 text-lg md:text-xl font-normal my-2;
 }
 
 .markdown p img {

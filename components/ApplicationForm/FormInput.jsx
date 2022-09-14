@@ -113,7 +113,7 @@ export default function FormInput({ data }) {
                                 focus:invalid:border-red-600 focus:invalid:ring-red-600
                                 focus:valid:border-green focus:valid:ring-green
                                 placeholder:text-gray-300
-                                    placeholder:font-light
+                                    placeholder:font-normal
                                     placeholder:text-opacity-40
                                 "
               placeholder="email@example.com"
@@ -214,7 +214,7 @@ export default function FormInput({ data }) {
                       id={fieldName}
                       value={option.option}
                     />
-                    <span className="ml-3 text-white font-light text-left">
+                    <span className="ml-3 text-white font-normal text-left">
                       {option.option}
                     </span>
                   </label>

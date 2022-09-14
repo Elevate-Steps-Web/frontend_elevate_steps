@@ -31,7 +31,7 @@ export default function BlogPost({ global, post, notFound }) {
         </div>
         <div className="absolute bottom-0 left-0 p-2 px-8 md:px-12 md:py-8 lg:px-24 text-2xl text-green font-cursive">
           <h2>
-            <span className="text-xl font-light font-sans text-white">
+            <span className="text-xl font-normal font-sans text-white">
               author:
               {' '}
             </span>

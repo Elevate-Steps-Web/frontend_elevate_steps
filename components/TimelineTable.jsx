@@ -24,7 +24,7 @@ function TimelineEvent({ title, description, month }) {
         <p className="font-cursive text-lg md:text-xl text-green">{month}</p>
       </div>
       <div className="col-span-3">
-        <p className="font-light text-lg md:text-xl text-center lg:text-left">
+        <p className="font-normal text-lg md:text-xl text-center lg:text-left">
           {description}
         </p>
       </div>

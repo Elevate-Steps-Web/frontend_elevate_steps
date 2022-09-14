@@ -33,7 +33,7 @@ export default function AppCarousel({ data }) {
                 </h1>
               )}
               {carousselText[index].Caption && (
-                <p className="md:text-xl lg:text-2xl xl:text-3xl font-light text-white max-w-[15.5rem] md:max-w-[45rem] text-center">
+                <p className="md:text-xl lg:text-2xl xl:text-3xl font-normal text-white max-w-[15.5rem] md:max-w-[45rem] text-center">
                   {carousselText[index].Caption}
                 </p>
               )}
