@@ -20,7 +20,7 @@ export default function ContactForm({ data }) {
     const endpoint = '/api/forms/contact';
     const options = {
       method: 'post',
-      body: data,
+      body: formdata,
     };
     const response = await fetch(endpoint, options);
 
