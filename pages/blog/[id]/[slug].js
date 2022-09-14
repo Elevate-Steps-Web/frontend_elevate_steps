@@ -2,11 +2,11 @@
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import MarkdownIt from 'markdown-it';
+import parse from 'html-react-parser';
+import { v4 as uuidv4 } from 'uuid';
 import { Page } from '../../../components/Page';
 import ShareToSocials from '../../../components/ShareToSocials';
 import { fetchAPI } from '../../../lib/api';
-import parse from 'html-react-parser';
-import { v4 as uuidv4 } from 'uuid';
 
 export default function BlogPost({ global, post, notFound }) {
   const cld = new Cloudinary({
