@@ -11,6 +11,7 @@ export default function LangSwitch() {
     en: { value: 'English', flagCode: 'GB-UKM' },
     fr: { value: 'Français', flagCode: 'FR' },
   };
+  const linkRoute = asPath.split('/')[1] === 'blog' ? '/blog' : asPath;
   return (
     <div className="md:text-white font-normal">
       <div className="dropdown">
@@ -31,7 +32,7 @@ export default function LangSwitch() {
           aria-labelledby="dropdownMenuButton"
         >
           {locales.map((loc) => (
-            <Link href={asPath} key={`lan-switch-${loc}`} locale={loc}>
+            <Link href={linkRoute} key={`lan-switch-${loc}`} locale={loc}>
               <a className="nav-link hover:text-orange">
                 <span className="pr-2">
                   <Flag code={switcherOptions[loc].flagCode} size="M" />
