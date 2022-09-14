@@ -70,8 +70,8 @@ export default function MentorshipApplicationPage({
 
     const result = await response.json();
     const currentPath = router.asPath;
-    // redirect to status complete page
-    router.push(`${currentPath}/complete`);
+    // redirect to status complete page (might need imrpovement)
+    window.location.href = `${currentPath}/complete`;
   };
 
   return (
