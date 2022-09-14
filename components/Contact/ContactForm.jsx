@@ -66,7 +66,7 @@ export default function ContactForm({ data }) {
                       <form onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 gap-6 w-full ">
                           {fields.map((field) => (
-                            <ContactFormInput key={uuidv4} field={field} />
+                            <ContactFormInput key={uuidv4()} field={field} />
                           ))}
                           <button
                             type="submit"
