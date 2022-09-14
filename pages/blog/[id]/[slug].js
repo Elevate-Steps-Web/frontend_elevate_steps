@@ -3,9 +3,9 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
+import { v4 as uuidv4 } from 'uuid';
 import { Page } from '../../../components/Page';
-import ShareFacebook from '../../../components/socialMediaSharing/ShareFacebook';
-import ShareTwitter from '../../../components/socialMediaSharing/ShareTwitter';
+import ShareToSocials from '../../../components/ShareToSocials';
 import { fetchAPI } from '../../../lib/api';
 
 export default function BlogPost({ global, post, notFound }) {
@@ -19,9 +19,10 @@ export default function BlogPost({ global, post, notFound }) {
   });
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const {
-    blogTitle, blogContent, coverMedia, author, locale,
+    blogTitle, blogContent, coverMedia, author,
   } = post.attributes;
   const content = md.render(blogContent);
+  const socials = ['Facebook', 'Twitter', 'WhatsApp', 'Telegram'];
   return (
     <Page global={global} currentPage="Blog">
       <div className="relative h-64 md:h-96 lg:h-[650px] w-screen">
@@ -39,8 +40,13 @@ export default function BlogPost({ global, post, notFound }) {
           </h2>
         </div>
         <div className="absolute flex flex-row bottom-0 right-0 p-2 px-8 md:px-12 md:py-8 lg:px-24 text-2xl gap-x-4">
-          <ShareTwitter locale={locale} />
-          <ShareFacebook />
+          {socials.map((social) => (
+            <ShareToSocials
+              key={uuidv4()}
+              target={social}
+              pageTitle={blogTitle}
+            />
+          ))}
         </div>
         <AdvancedImage
           className="object-cover object-center h-full w-full"

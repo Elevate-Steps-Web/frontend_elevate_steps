@@ -1,5 +1,8 @@
 module.exports = {
   reactStrictMode: true,
+  env: {
+    URL: process.env.URL,
+  },
   images: {
     loader: 'default',
     domains: ['localhost', 'res.cloudinary.com'],
