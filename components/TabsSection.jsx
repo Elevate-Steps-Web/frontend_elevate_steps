@@ -1,7 +1,6 @@
 import ProfileCatalogEntry from './ProfileCatalogEntry';
 
 export default function TabsSection({ tabs }) {
-  console.log(tabs);
   return (
     <>
       <ul className="nav nav-tabs mt-4" id="myTab" role="tablist">

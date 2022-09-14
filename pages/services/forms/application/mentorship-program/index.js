@@ -55,6 +55,7 @@ export default function MentorshipApplicationPage({
     // check the email of the formDataObj. if it already exists,
     // log a message and redirect to the homescreen
     if (alreadyApplied(formDataObj.email, formDataObj.fullname)) {
+      // eslint-disable-next-line no-alert
       alert('You have already applied. Redirecting to the homescreen.');
       router.push('/');
       return;
@@ -68,7 +69,6 @@ export default function MentorshipApplicationPage({
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
-    console.log(result);
     const currentPath = router.asPath;
     // redirect to status complete page
     router.push(`${currentPath}/complete`);
