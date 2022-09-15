@@ -5,19 +5,20 @@
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Keyboard, Scrollbar } from 'swiper';
 
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import Link from 'next/link';
-import React from 'react';
 import { useRouter } from 'next/router';
 import { v4 as uuidv4 } from 'uuid';
 import Container from '../../../../../components/Container';
 import FormIntroSection from '../../../../../components/ApplicationForm/FormIntroSection';
 import FormSection from '../../../../../components/ApplicationForm/FormSection';
 import { Layout } from '../../../../../components/Layout';
+import Loading from '../../../../../components/Loading';
 import alreadyApplied from '../../../../../constants/constants';
 import { fetchAPI } from '../../../../../lib/api';
 
@@ -70,11 +71,19 @@ export default function MentorshipApplicationPage({
 
     const result = await response.json();
     const currentPath = router.asPath;
-    // redirect to status complete page (might need imrpovement)
+    // redirect to status complete page (might need improvement)
     window.location.href = `${currentPath}/complete`;
   };
 
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Layout
       siteName={siteName}
       favicon={favicon}

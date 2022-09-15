@@ -1,7 +1,10 @@
+import { useEffect, useState } from 'react';
+
 /* eslint-disable no-unused-vars */
 import ContactEmails from '../components/Contact/ContactEmails';
 import ContactForm from '../components/Contact/ContactForm';
 import ContactPhoneNumbers from '../components/Contact/ContactPhoneNumbers';
+import Loading from '../components/Loading';
 import { Page } from '../components/Page';
 import PageHeader from '../components/PageHeader';
 import SocialMediaSection from '../components/Contact/SocialMediaSection';
@@ -18,7 +21,14 @@ export default function Contact({
   },
   notFound,
 }) {
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Page global={global} currentPage="Contact Us">
       <div className="w-full h-full bg-primary-blue">
         {pageHeader && <PageHeader data={pageHeader} />}

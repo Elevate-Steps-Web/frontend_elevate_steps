@@ -1,18 +1,9 @@
-import styled, { keyframes } from 'styled-components';
 import { useEffect, useState } from 'react';
 
-import GridLoader from 'react-spinners/GridLoader';
-import { fadeOut } from 'react-animations';
 import { useRouter } from 'next/router';
+import Loading from './Loading';
 
-const fadeOutAnimation = keyframes`${fadeOut}`;
-const FadeOutDiv = styled.div`
-  animation: ${fadeOutAnimation} 0.5s;
-  opacity: 0;
-  animation-fill-mode: forwards;
-`;
-
-function Loading() {
+function LoadingScreen() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -30,23 +21,9 @@ function Loading() {
       router.events.off('routeChangeComplete', handleComplete);
       router.events.off('routeChangeError', handleComplete);
     };
-  }, []);
+  });
 
-  return loading ? (
-    <FadeOutDiv>
-      <div className="w-screen h-screen bg-primary-blue flex flex-row items-center">
-        <div className="flex flex-col justify-items-center w-fit h-fit mx-auto">
-          <GridLoader
-            color="#fff"
-            loading={loading}
-            className="transition-opacity"
-          />
-        </div>
-      </div>
-    </FadeOutDiv>
-  ) : (
-    <FadeOutDiv />
-  );
+  return loading && <Loading state={loading} />;
 }
 
-export default Loading;
+export default LoadingScreen;

@@ -1,7 +1,10 @@
+import { useEffect, useState } from 'react';
+
 /* eslint-disable no-unused-vars */
 import Link from 'next/link';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
+import Loading from '../../components/Loading';
 import { Page } from '../../components/Page';
 import TabsSection from '../../components/TabsSection';
 import { fetchAPI } from '../../lib/api';
@@ -16,7 +19,14 @@ export default function ProfilesPage({
 }) {
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const content = md.render(pageContent);
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Page global={global} currentPage="Profiles">
       <div className="pt-24" id="page-header">
         <h1 className="text-primary-blue font-bold text-4xl text-center">

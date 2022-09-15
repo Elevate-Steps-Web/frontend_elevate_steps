@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
+
 import { BlogIntroSection } from '../../components/BlogIntroSection';
 import { BlogListSection } from '../../components/BlogListSection';
+import Loading from '../../components/Loading';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
 
@@ -11,7 +14,14 @@ export default function BlogHome({ global, blogPosts, notFound }) {
       > Date.parse(curr.attributes.createdAt)
       ? prev
       : curr));
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Page global={global} currentPage="Blog">
       {blogPosts ? (
         <div className="bg-primary-blue pb-24">

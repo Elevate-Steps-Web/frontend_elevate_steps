@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
+
 import AppCarousel from '../components/AppCarousel';
 import CTASection from '../components/CTASection';
 import FAQSection from '../components/FAQSection';
+import Loading from '../components/Loading';
 import { Page } from '../components/Page';
 import SplitSection from '../components/SplitSection';
 import StatsSection from '../components/StatsSection';
@@ -18,7 +21,15 @@ export default function Home({
   },
   notFound,
 }) {
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Page global={global} currentPage="Home">
       <div id="app-carousel">
         {caroussel && <AppCarousel data={caroussel} />}
