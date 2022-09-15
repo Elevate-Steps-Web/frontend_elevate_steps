@@ -2,13 +2,21 @@ import 'react-phone-input-2/lib/bootstrap.css';
 
 import PhoneInput from 'react-phone-input-2';
 import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 import BouncingArrow from '../BouncingArrow';
 
 export default function FormInput({ data }) {
   function renderInput(inputData) {
+    const [count, setCount] = useState(0);
+    const recount = (e) => {
+      const newCount = e.target.value.length;
+      setCount(newCount);
+    };
     const {
       required: requiredField,
-      inputField: { fieldName, inputType, fieldPrompt },
+      inputField: {
+        fieldName, inputType, maxLength, fieldPrompt,
+      },
       fieldOptions,
     } = inputData;
     switch (inputType) {
@@ -50,9 +58,13 @@ export default function FormInput({ data }) {
             />
           </label>
         );
-      case 'Text Area':
+      case 'Long Text':
         return (
-          <label className="flex flex-col" htmlFor={fieldName} key={uuidv4()}>
+          <label
+            className="flex flex-col"
+            htmlFor={fieldName}
+            key="text-area-application-form"
+          >
             <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-5 lg:mb-10">
               {fieldPrompt}
               {requiredField && (
@@ -81,7 +93,12 @@ export default function FormInput({ data }) {
                                 "
               rows="12"
               required={requiredField}
+              maxLength={maxLength ?? null}
+              onChange={recount}
             />
+            {maxLength && (
+              <span className="text-xl text-white pt-4">{`${count}/${maxLength}`}</span>
+            )}
           </label>
         );
       case 'Email Address':
