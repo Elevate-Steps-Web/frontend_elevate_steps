@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react';
+
 /* eslint-disable no-unused-vars */
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
 import { v4 as uuidv4 } from 'uuid';
+import Loading from '../../../components/Loading';
 import { Page } from '../../../components/Page';
 import ShareToSocials from '../../../components/ShareToSocials';
 import { fetchAPI } from '../../../lib/api';
@@ -23,7 +26,14 @@ export default function BlogPost({ global, post, notFound }) {
   } = post.attributes;
   const content = md.render(blogContent);
   const socials = ['Facebook', 'Twitter', 'WhatsApp', 'Telegram', 'LinkedIn'];
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Page global={global} currentPage="Blog">
       <div className="relative h-96 md:h-96 lg:h-[650px] w-screen">
         <div className="absolute h-full w-full bg-gradient-to-b from-primary-blue to-black opacity-60" />

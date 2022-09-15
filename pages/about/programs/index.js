@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
 import { v4 as uuidv4 } from 'uuid';
 import Container from '../../../components/Container';
+import Loading from '../../../components/Loading';
 import { Page } from '../../../components/Page';
 import { fetchAPI } from '../../../lib/api';
 
@@ -12,7 +15,14 @@ export default function ProgramsPage({ global, pageData, notFound }) {
       programs,
     },
   } = pageData;
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Page global={global} currentPage="Programs">
       <div className="flex flex-col items-center text-center py-10">
         <Container>

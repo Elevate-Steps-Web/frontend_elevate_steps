@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
+
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
+import Loading from '../../../../components/Loading';
 import { Page } from '../../../../components/Page';
 import TimelineGraphic from '../../../../components/TimelineGraphic';
 import TimelineTable from '../../../../components/TimelineTable';
@@ -17,7 +20,14 @@ export default function TimelinePage({ global, pageData, notFound }) {
   } = pageData.attributes;
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
   const content = md.render(pageDescription);
-  return (
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(false);
+    return () => setLoading(true);
+  });
+  return isLoading ? (
+    <Loading state={isLoading} />
+  ) : (
     <Page global={global} currentPage="Mentorship Program Timeline">
       <div className="bg-white pt-12" id="page-header">
         <h1 className="text-primary-blue font-bold text-4xl text-center">
