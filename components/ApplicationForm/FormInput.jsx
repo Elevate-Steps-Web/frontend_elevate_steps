@@ -1,3 +1,6 @@
+import 'react-phone-input-2/lib/bootstrap.css';
+
+import PhoneInput from 'react-phone-input-2';
 import { v4 as uuidv4 } from 'uuid';
 import BouncingArrow from '../BouncingArrow';
 
@@ -130,11 +133,13 @@ export default function FormInput({ data }) {
                 <span className="text-orange inline">{' *'}</span>
               )}
             </span>
-            <input
-              id={fieldName}
-              type="tel"
-              name={fieldName}
-              className="
+            <PhoneInput
+              inputProps={{
+                name: fieldName,
+                required: requiredField,
+              }}
+              placeholder="+123456789"
+              inputClass="
                                     mt-1
                               text-white
                                     h-16
@@ -151,10 +156,13 @@ export default function FormInput({ data }) {
                                     bg-transparent
                                 valid:border-green invalid:border-red-600
                                 focus:invalid:border-red-600 focus:invalid:ring-red-600
+                                focus:valid:border-green focus:valid:ring-green
+                                placeholder:text-gray-300
+                                    placeholder:font-normal
+                                    placeholder:text-opacity-40
                                 "
-              placeholder=""
-              pattern="^\+([0-9]){9,}$"
-              required={requiredField}
+              buttonClass="focus:ring focus:ring-secondary-blue focus:border-secondary-blue h-full"
+              country="us"
             />
           </label>
         );
@@ -205,7 +213,7 @@ export default function FormInput({ data }) {
                     className="inline-flex items-center mb-6 ml-8 lg:ml-0"
                     htmlFor={fieldName}
                     key={uuidv4()}
-                    // required={requiredField}
+                    required={requiredField}
                   >
                     <input
                       className="form-checkbox rounded-md checked:bg-green h-6 w-6 bg-transparent border-white"

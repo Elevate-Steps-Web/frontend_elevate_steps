@@ -1,3 +1,6 @@
+import 'react-phone-input-2/lib/bootstrap.css';
+
+import PhoneInput from 'react-phone-input-2';
 import _ from 'lodash';
 
 export default function ContactFormInput({ field }) {
@@ -81,28 +84,30 @@ export default function ContactFormInput({ field }) {
         );
       case 'Telephone':
         return (
-          <input
-            id={name}
-            type="tel"
-            name={_.camelCase(name)}
-            className="
-                        mt-1
-                        block
-                        w-full
-                        rounded-md
-                        empty:border-white
-                        shadow-sm
-                        focus:border-secondary-blue
-                        focus:ring
-                        focus:ring-secondary-blue
-                text-white bg-transparent
-                valid:border-green invalid:border-red-600
-                focus:invalid:border-red-600 focus:invalid:ring-red-600
-                focus:valid:border-green focus:valid:ring-green
-                    "
-            placeholder=""
-            pattern="^\+([0-9]){9,}$"
-            required={required}
+          <PhoneInput
+            inputProps={{
+              name: _.camelCase(name),
+              required,
+            }}
+            placeholder="+123456789"
+            inputClass="
+          mt-1
+          text-white
+                h-12
+                block
+                w-full
+                rounded-md
+                empty:border-white
+                shadow-sm
+                focus:border-secondary-blue
+                focus:ring
+            focus:ring-secondary-blue
+                bg-transparent
+            valid:border-green invalid:border-red-600
+            focus:invalid:border-red-600 focus:invalid:ring-red-600
+            "
+            buttonClass="focus:ring focus:ring-secondary-blue focus:border-secondary-blue h-full"
+            country="us"
           />
         );
       default:

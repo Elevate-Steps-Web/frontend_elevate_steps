@@ -37,6 +37,7 @@
     "react-flagpack": "^0.0.18",
     "react-i18next": "^11.18.3",
     "react-moment": "^1.1.2",
+    "react-phone-input-2": "^2.15.1",
     "react-share": "^4.4.0",
     "react-spinners": "^0.13.2",
     "styled-components": "^5.3.5",
