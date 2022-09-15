@@ -11,6 +11,7 @@ export function BlogListSection({ posts = [] }) {
         <div className="flex flex-wrap md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-between gap-4">
           {posts.map((blog) => (
             <BlogCard
+              id={blog.id}
               title={blog.attributes.blogTitle}
               description={blog.attributes.blogDescription}
               content={blog.attributes.blogContent}
