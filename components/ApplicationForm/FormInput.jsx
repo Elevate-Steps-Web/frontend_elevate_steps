@@ -1,9 +1,12 @@
 import 'react-phone-input-2/lib/bootstrap.css';
 
-import PhoneInput from 'react-phone-input-2';
-import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
+import React, { useMemo } from 'react';
+
 import BouncingArrow from '../BouncingArrow';
+import PhoneInput from 'react-phone-input-2';
+import countryList from 'react-select-country-list';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function FormInput({ data }) {
   function renderInput(inputData) {
@@ -19,11 +22,13 @@ export default function FormInput({ data }) {
       },
       fieldOptions,
     } = inputData;
+    const countryOptions = useMemo(() => countryList().getData(), []);
+
     switch (inputType) {
       case 'Short Text':
         return (
           <label className="flex flex-col" htmlFor={fieldName} key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -65,7 +70,7 @@ export default function FormInput({ data }) {
             htmlFor={fieldName}
             key="text-area-application-form"
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-5 lg:mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-5 lg:mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -79,7 +84,7 @@ export default function FormInput({ data }) {
                                 text-white
                                     block
                                     w-full
-                                    text-2xl
+                                    text-xl
                                     rounded-md
                                     empty:border-white border-2
                                     shadow-sm
@@ -91,7 +96,7 @@ export default function FormInput({ data }) {
                                 focus:invalid:border-red-600 focus:invalid:ring-red-600
                                 focus:valid:border-green focus:valid:ring-green
                                 "
-              rows="12"
+              rows="8"
               required={requiredField}
               maxLength={maxLength ?? null}
               onChange={recount}
@@ -104,7 +109,7 @@ export default function FormInput({ data }) {
       case 'Email Address':
         return (
           <label className="flex flex-col" htmlFor={fieldName} key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -144,7 +149,7 @@ export default function FormInput({ data }) {
       case 'Telephone':
         return (
           <label className="flex flex-col" htmlFor={fieldName} key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -186,7 +191,7 @@ export default function FormInput({ data }) {
       case 'Radio':
         return (
           <fieldset className="block" key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -217,7 +222,7 @@ export default function FormInput({ data }) {
       case 'Checkboxes':
         return (
           <fieldset className="block text-xl lg:text-3xl" key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -248,10 +253,10 @@ export default function FormInput({ data }) {
             </div>
           </fieldset>
         );
-      case 'Dropdown':
+      case 'Select':
         return (
           <label className="block text-3xl" htmlFor={fieldName} key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -270,6 +275,28 @@ export default function FormInput({ data }) {
             </select>
           </label>
         );
+      case 'Select Country':
+        return (
+          <label className="block text-3xl" htmlFor={fieldName} key={uuidv4()}>
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+              {fieldPrompt}
+              {requiredField && (
+                <span className="text-orange inline">{' *'}</span>
+              )}
+            </span>
+            <select
+              className="form-select block w-full rounded border-2 border-secondary-blue h-16 text-2xl bg-transparent text-green text-center mt-10"
+              id={fieldName}
+              name={fieldName}
+            >
+              {countryOptions.map((option) => (
+                <option key={uuidv4()} value={option.label}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        );
       case 'Submit':
         return (
           <label
@@ -277,7 +304,7 @@ export default function FormInput({ data }) {
             htmlFor={fieldName}
             key={uuidv4()}
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-5xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -321,7 +348,7 @@ export default function FormInput({ data }) {
                                 valid:border-green invalid:border-red-600
                                 focus:invalid:border-red-600 focus:invalid:ring-red-600
                                 "
-              placeholder=""
+              placeholder="default"
               required={requiredField}
             />
           </label>
