@@ -1,12 +1,9 @@
 import 'react-phone-input-2/lib/bootstrap.css';
-
-import React, { useMemo } from 'react';
-
-import BouncingArrow from '../BouncingArrow';
+import React, { useMemo, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import countryList from 'react-select-country-list';
-import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import BouncingArrow from '../BouncingArrow';
 
 export default function FormInput({ data }) {
   function renderInput(inputData) {
