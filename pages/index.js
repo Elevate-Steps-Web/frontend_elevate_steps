@@ -55,6 +55,9 @@ export async function getServerSideProps({ locale: routeLocale }) {
     populate: {
       content: {
         populate: '*',
+        ctaItems: {
+          populate: '*',
+        },
       },
       defaultSeo: {
         populate: '*',

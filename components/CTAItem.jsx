@@ -2,17 +2,28 @@ import Link from 'next/link';
 
 export default function CTAItem({ data }) {
   const {
-    header, caption, linkText, linkRoute,
+    header, caption, linkText, linkRoute, downloadAsset,
   } = data;
   return (
     <div className="flex flex-col items-center flex-1 gap-y-3 text-center">
-      <h2 className="text-white text-3xl font-bold">{header}</h2>
-      <p className="text-white text-xl">{caption}</p>
-      <Link href={linkRoute} passHref>
-        <a className="text-lg hover:text-secondary-blue btn btn-outline-light mt-4">
+      <h2 className="text-primary-blue text-3xl font-bold">{header}</h2>
+      <p className="text-black text-xl">{caption}</p>
+      {downloadAsset && downloadAsset.data !== null ? (
+        <a
+          href={downloadAsset.data.attributes.url}
+          target="_blank"
+          className="text-lg hover:text-white text-green hover:text-white hover:bg-green btn btn-outline border-green mt-4"
+          rel="noreferrer"
+        >
           {linkText}
         </a>
-      </Link>
+      ) : (
+        <Link href={linkRoute} passHref>
+          <a className="text-lg hover:text-white text-green hover:text-white hover:bg-green btn btn-outline border-green mt-4">
+            {linkText}
+          </a>
+        </Link>
+      )}
     </div>
   );
 }

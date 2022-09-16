@@ -8,13 +8,14 @@ import Container from '../../../../components/Container';
 import Loading from '../../../../components/Loading';
 import { Page } from '../../../../components/Page';
 import { fetchAPI } from '../../../../lib/api';
+import CTASection from '../../../../components/CTASection';
 
 export default function MentorshipProgramsPage({ global, pageData, notFound }) {
   const {
     attributes: {
       pageHeader: { pageTitle, caption },
       pageContent,
-      cta,
+      ctaItems,
     },
   } = pageData;
   const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
@@ -43,21 +44,7 @@ export default function MentorshipProgramsPage({ global, pageData, notFound }) {
           <div className="markdown">{parse(content)}</div>
         </div>
         <div className="pb-24 flex flex-col gap-2 justify-center">
-          {cta.header && (
-            <>
-              <h3 className="text-center font-cursive text-primary-blue text-3xl">
-                {cta.header}
-              </h3>
-              <p className="text-xl font-normal text-center lg:px-36 md:px-24">
-                {cta.caption}
-              </p>
-            </>
-          )}
-          <Link href={cta.linkRoute}>
-            <a className="text-center text-green hover:text-secondary-blue text-2xl underline">
-              {`${cta.linkText} >`}
-            </a>
-          </Link>
+          {ctaItems && <CTASection data={{ ctaItems }} />}
         </div>
       </div>
     </Page>
@@ -66,7 +53,14 @@ export default function MentorshipProgramsPage({ global, pageData, notFound }) {
 
 export async function getServerSideProps({ locale: routeLocale }) {
   const page = await fetchAPI('/about-mentorship-program', {
-    populate: '*',
+    populate: {
+      ctaItems: {
+        populate: '*',
+      },
+      pageHeader: {
+        populate: '*',
+      },
+    },
     locale: routeLocale,
   });
   if (page.error) {
