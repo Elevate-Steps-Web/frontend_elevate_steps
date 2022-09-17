@@ -55,16 +55,11 @@ export default function SplitSection({ data }) {
               id="content"
               className="flex flex-col text-center gap-y-5 md:px-14 px-8 py-24"
             >
-              <h1 className="text-3xl md:text-5xl text-white">
-                {Header || 'Our Objective? Your Career Success'}
-              </h1>
-              <p className="text-base md:text-xl text-secondary-blue">
-                {Caption
-                  || 'We help prepare young, upcoming African professionals to succeed in their future career endeavours. '}
-              </p>
-              <Link href={LinkRoute || '/programs'} passHref>
-                <a className="text-lg hover:text-secondary-blue hover:underline text-green">
-                  {LinkText || 'Click here to learn more! >'}
+              <h1 className="text-3xl md:text-5xl text-white">{Header}</h1>
+              <p className="md:text-xl text-secondary-blue">{Caption}</p>
+              <Link href={LinkRoute} passHref>
+                <a className="hover:text-primary-blue btn btn-green mt-5 hover:bg-green text-green hover:border-green border-green md:text-lg lg:text-xl xl:text-2xl mx-auto h-full">
+                  {LinkText}
                 </a>
               </Link>
             </div>

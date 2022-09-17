@@ -39,7 +39,7 @@ export default function AppCarousel({ data }) {
               )}
               {carousselText[index].LinkRoute && (
                 <Link href={carousselText[index].LinkRoute} passHref>
-                  <a className="hover:underline hover:text-secondary-blue md:text-xl lg:text-2xl xl:text-3xl underline text-green">
+                  <a className="hover:text-primary-blue btn btn-green mt-5 hover:bg-green text-green hover:border-green border-green md:text-xl lg:text-2xl xl:text-3xl mx-auto px-10 h-full">
                     {carousselText[index].LinkText
                       ?? carousselText[index].LinkRoute}
                   </a>
