@@ -1,4 +1,4 @@
-export default function SocialMediaHandle({ data }) {
+export default function SocialMediaHandle({ data, fullHandle = true }) {
   function renderIcon(platform) {
     switch (platform) {
       case 'Instagram':
@@ -19,7 +19,9 @@ export default function SocialMediaHandle({ data }) {
     <div className="flex flex-row justify-center text-white text-3xl lg:text-2xl">
       <a className="hover:text-secondary-blue" href={linkRoute}>
         {platform && renderIcon(platform)}
-        {linkText && linkRoute && <span className="ml-2">{linkText}</span>}
+        {linkText && linkRoute && fullHandle && (
+          <span className="ml-2">{linkText}</span>
+        )}
       </a>
     </div>
   );
