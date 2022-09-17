@@ -4,6 +4,7 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { v4 as uuidv4 } from 'uuid';
 import AppFooterColumn from './AppFooter/AppFooterColumn';
 import AppFooterItem from './AppFooter/AppFooterItem';
+import SocialMediaSection from './Contact/SocialMediaSection';
 
 export default function AppFooter({ footer }) {
   const cld = new Cloudinary({
@@ -15,17 +16,20 @@ export default function AppFooter({ footer }) {
     },
   });
   return (
-    <footer className="relative w-full self-end bottom-0 mt-screen">
+    <footer className="relative w-full self-end bottom-0">
       <div className="bg-black w-full px-10 xl:px-40">
         <div className="grid md:grid-cols-2 lg:flex lg:flex-row text-white justify-items-center lg:py-5 py-10 xl:gap-x-2 gap-y-6 md:gap-y-3 mx-auto max-w-[90rem]">
-          <div id="logo/home" className="flex flex-col text-center space-y-3">
+          <div
+            id="logo/home"
+            className="flex flex-col text-center space-y-3 max-w-xs h-full"
+          >
             <div className="flex justify-center mt-2 ">
               {footer
                 .filter((navItem) => navItem.__component === 'images.nav-brand')
                 .map((image) => (
                   <AdvancedImage
                     key={1}
-                    className="object-cover object-center h-full lg:h-10 lg:w-full w-3/5"
+                    className="object-cover object-center h-full lg:h-full lg:w-56 w-3/5"
                     cldImg={cld.image(
                       image.navBrand.data.attributes.provider_metadata
                         .public_id,
@@ -34,6 +38,13 @@ export default function AppFooter({ footer }) {
                 ))}
             </div>
             <AppFooterItem linkText="Home" linkRoute="/" />
+            {footer
+              .filter(
+                (footerItem) => footerItem.__component === 'sections.social-media-section',
+              )
+              .map((section) => (
+                <SocialMediaSection key={0} data={section} fullHandle={false} />
+              ))}
           </div>
           {footer.map(
             (footerItem) => footerItem.__component === 'navigation.footer-column' && (
