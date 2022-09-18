@@ -38,21 +38,21 @@ export default function ContactForm({ data }) {
     <Container>
       <div className="flex flex-row justify-center w-full mb-24">
         <div
-          className="flex flex-col flex-none accordion accordion-flush mt-12 w-3/4 px-auto rounded-sm border-b-2"
+          className="flex flex-col flex-none accordion accordion-flush mt-12 w-3/4 px-auto border-2 rounded-lg border-secondary-blue"
           id="acc"
         >
-          <div className="accordion-item">
-            <div className="bg-primary-blue ">
-              <h2 className="accordion-header" id={`heading${id}`}>
+          <div className="accordion-item rounded-lg">
+            <div className="bg-primary-blue rounded-md">
+              <h2 className="accordion-header rounded-lg" id={`heading${id}`}>
                 <button
-                  className="accordion-button collapsed focus:bg-secondary-blue bg-primary-blue text-white focus:ring-0"
+                  className="accordion-button collapsed focus:bg-primary-blue focus:text-secondary-blue bg-white text-primary-blue focus:ring-0 rounded-md"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#collapse${id}`}
                   aria-expanded="false"
                   aria-controls={`collapse${id}`}
                 >
-                  <span className="text-inherit text-xl mb-2 hover:cursor-pointer">
+                  <span className="text-inherit text-xl hover:cursor-pointer">
                     {title}
                   </span>
                 </button>
@@ -68,11 +68,11 @@ export default function ContactForm({ data }) {
                   <div className="flex flex-row justify-center">
                     <div className="mt-4 flex-1">
                       {emailSent ? (
-                        <div className="flex flex-col items-center text-white gap-y-5">
+                        <div className="flex flex-col items-center gap-y-5">
                           <h2 className="text-3xl font-cursive text-green">
                             {successHeader}
                           </h2>
-                          <p className="text-xl px-32 text-center">
+                          <p className="text-xl px-32 text-center text-secondary-blue">
                             {successMessage}
                           </p>
                         </div>
@@ -84,7 +84,7 @@ export default function ContactForm({ data }) {
                             ))}
                             <button
                               type="submit"
-                              className="text-lg hover:text-secondary-blue btn btn-outline-light text-green mt-4 md:w-1/3 mx-auto"
+                              className="text-lg btn btn-outline-light border-green hover:bg-green hover:text-primary-blue text-green mt-4 md:w-1/3 mx-auto"
                             >
                               {submit}
                             </button>

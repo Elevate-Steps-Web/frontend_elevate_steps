@@ -78,7 +78,7 @@ export default function ContactFormInput({ field }) {
                     focus:invalid:border-red-600 focus:invalid:ring-red-600
                     focus:valid:border-green focus:valid:ring-green
                     "
-            placeholder="john@example.com"
+            placeholder="you@example.com"
             required={required}
           />
         );

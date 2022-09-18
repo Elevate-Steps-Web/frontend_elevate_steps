@@ -1,23 +1,30 @@
 import { BlogCard } from './BlogCard';
 import Container from './Container';
+import PageHeader from './PageHeader';
 
-export function BlogIntroSection({ latestPost = null, featuredPosts = [] }) {
+export function BlogIntroSection({
+  pageHeader,
+  latestSectionHeader,
+  featuredSectionHeader,
+  latestPost = null,
+  featuredPosts = [],
+}) {
   return (
     <Container>
-      <div className="w-full lg:w-1/2 py-4">
-        <h1 className="text-secondary-blue font-bold text-4xl py-2">
-          ELEVATE Blog
-        </h1>
-        <p className="text-base text-white py-2">
-          A small caption to entice readers to keep reading this blog because
-          it&apos;s really good!
-        </p>
+      <div className="w-full py-4">
+        {pageHeader && (
+          <PageHeader
+            data={pageHeader}
+            titleStyle="text-secondary-blue"
+            captionStyle="text-white"
+          />
+        )}
       </div>
       <div className="flex flex-wrap justify-between gap-5">
         {latestPost && (
           <div className="py-6">
             <h1 className="text-secondary-blue font-bold text-4xl pb-4">
-              Latest
+              {latestSectionHeader.pageTitle}
             </h1>
             <BlogCard
               id={latestPost.id}
@@ -30,7 +37,7 @@ export function BlogIntroSection({ latestPost = null, featuredPosts = [] }) {
         {featuredPosts.length > 0 && (
           <div className="py-6">
             <h1 className="text-secondary-blue font-bold text-4xl pb-4">
-              Featured
+              {featuredSectionHeader.pageTitle}
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
               <BlogCard
