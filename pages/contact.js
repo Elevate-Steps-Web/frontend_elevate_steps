@@ -30,11 +30,17 @@ export default function Contact({
     <Loading state={isLoading} />
   ) : (
     <Page global={global} currentPage="Contact Us">
-      <div className="w-full h-full bg-primary-blue">
-        {pageHeader && <PageHeader data={pageHeader} />}
-        {socialMediaSection && <SocialMediaSection data={socialMediaSection} />}
-        {contactEmails && <ContactEmails data={contactEmails} />}
-        {contactPhones && <ContactPhoneNumbers data={contactPhones} />}
+      <div className="w-full h-full bg-white">
+        {pageHeader && (
+          <PageHeader data={pageHeader} titleStyle="text-primary-blue" />
+        )}
+        {socialMediaSection && (
+          <SocialMediaSection data={socialMediaSection} displayColored />
+        )}
+        <div className="flex md:flex-row flex-col justify-center gap-x-16">
+          {contactEmails && <ContactEmails data={contactEmails} />}
+          {contactPhones && <ContactPhoneNumbers data={contactPhones} />}
+        </div>
         {contactForm && <ContactForm data={contactForm} />}
       </div>
     </Page>

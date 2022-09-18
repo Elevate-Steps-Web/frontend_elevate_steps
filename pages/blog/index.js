@@ -7,13 +7,21 @@ import Loading from '../../components/Loading';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
 
-export default function BlogHome({ global, blogPosts, notFound }) {
+export default function BlogHome({
+  global, blogPosts, pageData, notFound,
+}) {
   const latestBlog = blogPosts
     /* eslint-disable-next-line max-len */
     && blogPosts.reduce((prev, curr) => (Date.parse(prev.attributes.createdAt)
       > Date.parse(curr.attributes.createdAt)
       ? prev
       : curr));
+  const {
+    pageHeader,
+    featuredSectionHeader,
+    latestSectionHeader,
+    allPostsSectionHeader,
+  } = pageData;
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(false);
@@ -26,10 +34,15 @@ export default function BlogHome({ global, blogPosts, notFound }) {
       {blogPosts ? (
         <div className="bg-primary-blue pb-24">
           <div id="blog-intro">
-            <BlogIntroSection latestPost={latestBlog} />
+            <BlogIntroSection
+              latestPost={latestBlog}
+              pageHeader={pageHeader}
+              latestSectionHeader={latestSectionHeader}
+              featuredSectionHeader={featuredSectionHeader}
+            />
           </div>
           <div id="blog-list">
-            <BlogListSection posts={blogPosts} />
+            <BlogListSection header={allPostsSectionHeader} posts={blogPosts} />
           </div>
         </div>
       ) : (
@@ -46,11 +59,27 @@ export async function getServerSideProps({ locale: routeLocale }) {
     populate: '*',
     locale: routeLocale,
   });
+  const blogHomeRes = await fetchAPI('/blog-home', {
+    populate: '*',
+    locale: routeLocale,
+  });
+  const {
+    pageHeader,
+    latestSectionHeader,
+    featuredSectionHeader,
+    allPostsSectionHeader,
+  } = blogHomeRes.data.attributes;
+  const pageData = {
+    pageHeader,
+    latestSectionHeader,
+    featuredSectionHeader,
+    allPostsSectionHeader,
+  };
   if (blogPostsRes.error) {
     console.log('Fetching data failed');
     return {
       notFound: true,
     };
   }
-  return { props: { blogPosts: blogPostsRes.data } };
+  return { props: { pageData, blogPosts: blogPostsRes.data } };
 }

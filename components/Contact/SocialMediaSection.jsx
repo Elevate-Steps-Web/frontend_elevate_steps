@@ -1,7 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import SocialMediaHandle from './SocialMediaHandle';
 
-export default function SocialMediaSection({ data, fullHandle = true }) {
+export default function SocialMediaSection({
+  data,
+  fullHandle = true,
+  displayColored = false,
+}) {
   const { socialMediaItems } = data;
   return (
     <div
@@ -14,6 +18,7 @@ export default function SocialMediaSection({ data, fullHandle = true }) {
           key={uuidv4()}
           data={Handle}
           fullHandle={fullHandle}
+          displayColored={displayColored}
         />
       ))}
     </div>

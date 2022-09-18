@@ -7,7 +7,7 @@ export default function PhoneNumbersSection({ data }) {
       {contactPhones.map((email) => (
         <div
           key={uuidv4()}
-          className="flex flex-row justify-center text-white text-2xl"
+          className="flex flex-row justify-center text-primary-blue text-2xl"
         >
           <a className="hover:text-secondary-blue" href={`tel:${email.value}`}>
             <i className="bi bi-telephone" />
