@@ -1,5 +1,7 @@
 import 'react-phone-input-2/lib/bootstrap.css';
+
 import React, { useMemo, useState } from 'react';
+
 import PhoneInput from 'react-phone-input-2';
 import countryList from 'react-select-country-list';
 import { v4 as uuidv4 } from 'uuid';
@@ -13,9 +15,12 @@ export default function FormInput({ data }) {
       setCount(newCount);
     };
     const {
-      required: requiredField,
       inputField: {
-        fieldName, inputType, maxLength, fieldPrompt,
+        fieldName,
+        inputType,
+        maxLength,
+        fieldPrompt,
+        required: requiredField,
       },
       fieldOptions,
     } = inputData;
