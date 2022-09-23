@@ -43,9 +43,11 @@ export default function MentorshipApplicationPage({
   });
   const { pageHeader, formSections } = pageContent;
   const router = useRouter();
+  const [isLoading, setLoading] = useState(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const data = new FormData(event.target);
     const formDataObj = {};
@@ -57,8 +59,8 @@ export default function MentorshipApplicationPage({
     // log a message and redirect to the homescreen
     if (alreadyApplied(formDataObj.email, formDataObj.fullname)) {
       // eslint-disable-next-line no-alert
-      alert('You have already applied. Redirecting to the homescreen.');
-      router.push('/');
+      alert('You have already applied. Redirecting to the homepagee.');
+      window.location.href = '/';
       return;
     }
 
@@ -70,12 +72,18 @@ export default function MentorshipApplicationPage({
     const response = await fetch(endpoint, options);
 
     const result = await response.json();
+    console.log(result);
     const currentPath = router.asPath;
-    // redirect to status complete page (might need improvement)
-    window.location.href = `${currentPath}/complete`;
+    let targetPath;
+    if (result.status === 'success') {
+      // redirect to status complete page (might need improvement)
+      targetPath = 'complete';
+    } else {
+      targetPath = 'failed';
+    }
+    window.location.href = `${currentPath}/${targetPath}`;
   };
 
-  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(false);
     return () => setLoading(true);
