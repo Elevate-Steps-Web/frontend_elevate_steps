@@ -7,7 +7,7 @@ export default function CTAItem({ data }) {
   return (
     <div className="flex flex-col items-center flex-1 gap-y-3 text-center">
       <h2 className="text-primary-blue text-3xl font-bold">{header}</h2>
-      <p className="text-black text-xl">{caption}</p>
+      <p className="text-neutral-700 text-xl">{caption}</p>
       {downloadAsset && downloadAsset.data !== null ? (
         <a
           href={downloadAsset.data.attributes.url}

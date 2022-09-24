@@ -1,5 +1,5 @@
 .markdown p {
-  @apply font-normal text-lg md:text-xl text-black mb-8;
+  @apply font-normal text-lg md:text-xl text-neutral-700 mb-8;
 }
 
 .markdown blockquote {
@@ -7,11 +7,17 @@
 }
 
 .markdown blockquote p {
-  @apply font-normal text-lg md:text-xl text-black italic my-0;
+  @apply font-normal text-lg md:text-xl text-neutral-700 italic my-0;
 }
 
 .markdown ul {
-  @apply list-disc px-4 text-lg md:text-xl font-normal my-2;
+  @apply px-4 text-lg md:text-xl font-normal my-2 flex flex-col space-y-4;
+}
+.markdown ul li:before {
+  font-family: 'FontAwesome';
+  content: '\f054';
+  @apply pr-2 text-green text-sm;
+  /* color: #f00; */
 }
 
 .markdown ol {
