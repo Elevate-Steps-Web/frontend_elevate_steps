@@ -13,6 +13,8 @@
     "@cloudinary/url-gen": "^1.8.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@headlessui/react": "^1.7.2",
+    "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "^5.0.0-alpha.98",
     "@mui/material": "^5.8.3",
