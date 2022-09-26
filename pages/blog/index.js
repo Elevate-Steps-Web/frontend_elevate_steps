@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 
-import { BlogIntroSection } from '../../components/BlogIntroSection';
-import { BlogListSection } from '../../components/BlogListSection';
+import { BlogIntroSection } from '../../components/Blog/BlogIntroSection';
+import { BlogListSection } from '../../components/Blog/BlogListSection';
 import Loading from '../../components/Loading';
 import { Page } from '../../components/Page';
 import { fetchAPI } from '../../lib/api';
