@@ -4,7 +4,9 @@ import PhoneInput from 'react-phone-input-2';
 import _ from 'lodash';
 
 export default function ContactFormInput({ field }) {
-  const { inputType, fieldName, required } = field;
+  const {
+    inputType, fieldName, fieldPrompt, required,
+  } = field;
 
   function renderInput(type, name) {
     switch (type) {
@@ -32,7 +34,7 @@ export default function ContactFormInput({ field }) {
             required={required}
           />
         );
-      case 'Text Area':
+      case 'Long Text':
         return (
           <textarea
             id={name}
@@ -139,7 +141,7 @@ export default function ContactFormInput({ field }) {
 
   return (
     <label className="block" htmlFor={fieldName}>
-      <span className="text-orange font-medium text-lg">{fieldName}</span>
+      <span className="text-orange font-medium text-lg">{fieldPrompt}</span>
       {required && <span className="text-orange inline">{' *'}</span>}
       {renderInput(inputType, fieldName)}
     </label>

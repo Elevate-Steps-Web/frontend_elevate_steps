@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { GridLoader } from 'react-spinners';
 import { v4 as uuidv4 } from 'uuid';
 import ContactFormInput from './ContactFormInput';
 import Container from '../Container';
@@ -10,9 +11,11 @@ export default function ContactForm({ data }) {
   } = data;
   const id = 1;
   const [emailSent, setEmailSent] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const formdata = new FormData(event.target);
     const formDataObj = {};
@@ -29,8 +32,7 @@ export default function ContactForm({ data }) {
 
     const result = await response.json();
     console.log(result);
-    // redirect to homepage
-    // router.push('/');
+    setLoading(false);
     setEmailSent(true);
   };
 
@@ -66,32 +68,43 @@ export default function ContactForm({ data }) {
               >
                 <div className="accordion-body">
                   <div className="flex flex-row justify-center">
-                    <div className="mt-4 flex-1">
-                      {emailSent ? (
-                        <div className="flex flex-col items-center gap-y-5">
-                          <h2 className="text-3xl font-cursive text-green">
-                            {successHeader}
-                          </h2>
-                          <p className="text-xl px-32 text-center text-secondary-blue">
-                            {successMessage}
-                          </p>
-                        </div>
-                      ) : (
-                        <form onSubmit={handleSubmit}>
-                          <div className="grid grid-cols-1 gap-6 w-full ">
-                            {fields.map((field) => (
-                              <ContactFormInput key={uuidv4()} field={field} />
-                            ))}
-                            <button
-                              type="submit"
-                              className="text-lg btn btn-outline-light border-green hover:bg-green hover:text-primary-blue text-green mt-4 md:w-1/3 mx-auto"
-                            >
-                              {submit}
-                            </button>
+                    {isLoading ? (
+                      <GridLoader
+                        color="#fff"
+                        className="transition-opacity"
+                        loading={isLoading}
+                      />
+                    ) : (
+                      <div className="mt-4 flex-1">
+                        {emailSent ? (
+                          <div className="flex flex-col items-center gap-y-5">
+                            <h2 className="text-3xl font-cursive text-green">
+                              {successHeader}
+                            </h2>
+                            <p className="text-xl px-32 text-center text-secondary-blue">
+                              {successMessage}
+                            </p>
                           </div>
-                        </form>
-                      )}
-                    </div>
+                        ) : (
+                          <form onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-1 gap-6 w-full ">
+                              {fields.map((field) => (
+                                <ContactFormInput
+                                  key={uuidv4()}
+                                  field={field}
+                                />
+                              ))}
+                              <button
+                                type="submit"
+                                className="text-lg btn btn-outline-light border-green hover:bg-green hover:text-primary-blue text-green mt-4 md:w-1/3 mx-auto"
+                              >
+                                {submit}
+                              </button>
+                            </div>
+                          </form>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
