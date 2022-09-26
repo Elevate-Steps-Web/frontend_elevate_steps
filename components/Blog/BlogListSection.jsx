@@ -1,5 +1,5 @@
 import { BlogCard } from './BlogCard';
-import Container from './Container';
+import Container from '../Container';
 
 export function BlogListSection({ header, posts = [] }) {
   return (

@@ -37,13 +37,13 @@ export default function Home({
       <div id="picture left, text right">
         {splitSection && <SplitSection data={splitSection} />}
       </div>
-      <div id="important numbers">
+      <div id="important numbers" className="py-14">
         {statsSection && <StatsSection data={statsSection} />}
       </div>
       <div id="faeq section">
         {faeqSection && <FAQSection data={faeqSection} />}
       </div>
-      <div id="cta section">
+      <div id="cta section" className="py-20">
         {ctaSection && <CTASection data={ctaSection} />}
       </div>
     </Page>

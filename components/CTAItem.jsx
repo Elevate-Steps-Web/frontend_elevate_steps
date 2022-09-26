@@ -12,7 +12,7 @@ export default function CTAItem({ data }) {
         <a
           href={downloadAsset.data.attributes.url}
           target="_blank"
-          className="text-lg hover:text-white text-green hover:text-white hover:bg-green btn btn-outline border-green mt-4"
+          className="text-lg hover:text-white text-green hover:bg-green btn btn-outline border-green mt-4"
           rel="noreferrer"
         >
           {linkText}

@@ -3,11 +3,15 @@ import Container from './Container';
 import FAQuestion from './FAQuestion';
 import Section from './Section';
 
-export default function FAQSection({ data }) {
+export default function FAQSection({ data, hasBg = true }) {
   const { faqs } = data;
   return (
     <Section>
-      <div className="bg-primary-blue text-white py-28">
+      <div
+        className={`${
+          hasBg ? 'bg-primary-blue text-white' : 'text-primary-blue'
+        }  py-28`}
+      >
         <Container>
           <div className="h-fit w-full text-center">
             <h1 className="text-5xl mb-4">FAEQs</h1>
@@ -24,6 +28,7 @@ export default function FAQSection({ data }) {
                   id={index}
                   question={faq.question}
                   answer={faq.answer}
+                  hasBg={hasBg}
                 />
               </div>
             ))}

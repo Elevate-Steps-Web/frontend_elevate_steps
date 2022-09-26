@@ -1,9 +1,15 @@
-export default function FAQuestion({ id, question, answer }) {
+export default function FAQuestion({
+  id, question, answer, hasBg,
+}) {
   return (
-    <div className="bg-primary-blue ">
+    <div className={hasBg && 'bg-primary-blue '}>
       <h2 className="accordion-header" id={`heading${id}`}>
         <button
-          className="accordion-button collapsed focus:bg-secondary-blue bg-primary-blue text-white focus:ring-0"
+          className={`accordion-button collapsed focus:ring-0 ${
+            hasBg
+              ? 'focus:bg-secondary-blue bg-primary-blue text-white'
+              : 'focus:bg-primary-blue text-primary-blue focus:text-white'
+          }`}
           type="button"
           data-bs-toggle="collapse"
           data-bs-target={`#collapse${id}`}
@@ -23,7 +29,11 @@ export default function FAQuestion({ id, question, answer }) {
         data-bs-parent="#acc"
       >
         <div className="accordion-body">
-          <p className="text-white text-xl">{answer}</p>
+          <p
+            className={`${hasBg ? 'text-white' : 'text-primary-blue'} text-xl`}
+          >
+            {answer}
+          </p>
         </div>
       </div>
     </div>
