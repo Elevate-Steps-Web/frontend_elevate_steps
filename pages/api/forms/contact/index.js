@@ -2,7 +2,9 @@ import nextConnect from 'next-connect';
 import nodemailer from 'nodemailer';
 import middleware from '../../../../utils/middleware';
 
-const { WEB_EMAIL, WEB_PASSWORD, ELEVATE_EMAIL } = process.env;
+const {
+  WEB_EMAIL, WEB_PASSWORD, ELEVATE_EMAIL, URL,
+} = process.env;
 
 export const config = {
   api: {
@@ -15,9 +17,9 @@ handler.use(middleware);
 
 handler.post(async (req, res) => {
   const {
-    name: senderName,
-    email: senderEmail,
-    subject: senderSubject,
+    fullName: senderName,
+    emailAddress: senderEmail,
+    messageSubject: senderSubject,
     phoneNumber: senderPhone,
     message: senderMessage,
   } = req.body;
@@ -32,11 +34,11 @@ handler.post(async (req, res) => {
     },
   });
   const htmlMessage = `
-    <h1>Contact message from elevatesteps.org<h1>
+    <h1>Contact message from ${URL}<h1>
     <h3>Sender name</h3>
     <p>${senderName}</p>
     <h3>Sender phone number</h3>
-    <p>${senderPhone}</p>
+    <p>${senderPhone || 'not provided'}</p>
     <h3>Sender email</h3>
     <p>${senderEmail}</p>
     <h3>Message</h3>
@@ -45,7 +47,7 @@ handler.post(async (req, res) => {
   const info = await transporter.sendMail({
     to: `Elevate Steps Web <${ELEVATE_EMAIL}>`,
     replyTo: senderEmail,
-    subject: `[ContactForm] ${senderSubject[0]}`,
+    subject: `[ContactForm] ${senderSubject}`,
     html: htmlMessage,
   });
 
