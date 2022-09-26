@@ -1,6 +1,6 @@
 import { BlogCard } from './BlogCard';
-import Container from './Container';
-import PageHeader from './PageHeader';
+import Container from '../Container';
+import PageHeader from '../PageHeader';
 
 export function BlogIntroSection({
   pageHeader,
