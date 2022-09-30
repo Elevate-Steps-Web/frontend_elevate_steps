@@ -45,3 +45,19 @@ span.swiper-pagination-bullet {
   height: 2rem;
   width: 2rem;
 }
+
+div.swiper-scrollbar-drag {
+  height: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+div.swiper-scrollbar {
+  height: 0.75rem;
+}
+
+div.swiper-scrollbar-horizontal {
+  margin-bottom: 0.5rem;
+  height: 0.75rem;
+  padding-bottom: 1rem;
+}
