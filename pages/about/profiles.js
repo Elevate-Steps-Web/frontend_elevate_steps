@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-/* eslint-disable no-unused-vars */
-import Link from 'next/link';
 import MarkdownIt from 'markdown-it';
 import parse from 'html-react-parser';
+import CTAItem from '../../components/CTAItem';
+/* eslint-disable no-unused-vars */
 import Loading from '../../components/Loading';
 import { Page } from '../../components/Page';
 import TabsSection from '../../components/TabsSection';
@@ -42,16 +42,7 @@ export default function ProfilesPage({
         </div>
         {cta && (
           <div className="pb-24 flex flex-col gap-2 justify-center">
-            {cta.header && (
-              <h3 className="text-center text-primary-blue text-2xl">
-                {cta.header}
-              </h3>
-            )}
-            <Link href={cta.linkRoute}>
-              <a className="text-center text-green hover:text-secondary-blue text-xl">
-                {cta.linkText}
-              </a>
-            </Link>
+            <CTAItem data={cta} />
           </div>
         )}
       </div>
