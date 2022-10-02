@@ -21,7 +21,7 @@ export default function ImportantNumbersSection({ data }) {
             </div>
           ))}
         </div>
-        <p className="text-center sm:text-xl lg:text-3xl lg:pt-16 pt-28 text-primary-blue">
+        <p className="text-center text-2xl lg:text-3xl lg:pt-16 pt-28 text-primary-blue">
           {summary}
         </p>
       </div>

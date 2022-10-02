@@ -28,8 +28,8 @@ export default function ProfilesPage({
     <Loading state={isLoading} />
   ) : (
     <Page global={global} currentPage="Profiles">
-      <div className="pt-24" id="page-header">
-        <h1 className="text-primary-blue font-bold text-4xl text-center">
+      <div className="pt-16 px-10" id="page-header">
+        <h1 className="text-primary-blue font-cursive text-6xl text-center">
           {pageHeader}
         </h1>
       </div>
