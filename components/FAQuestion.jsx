@@ -35,11 +35,9 @@ export default function FAQuestion({
         data-bs-parent="#acc"
       >
         <div className="accordion-body">
-          <p
-            className={`${hasBg ? 'text-white' : 'text-primary-blue'} text-xl`}
-          >
-            <div className="markdown-light">{parse(answerText)}</div>
-          </p>
+          <div className={`${hasBg ? 'markdown-light' : 'markdown'}`}>
+            {parse(answerText)}
+          </div>
         </div>
       </div>
     </div>
