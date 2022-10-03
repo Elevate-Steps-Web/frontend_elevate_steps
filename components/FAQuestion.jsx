@@ -1,6 +1,12 @@
+import MarkdownIt from 'markdown-it';
+import parse from 'html-react-parser';
+
 export default function FAQuestion({
   id, question, answer, hasBg,
 }) {
+  const md = new MarkdownIt({ html: true, linkify: true, breaks: true });
+  const answerText = md.render(answer);
+
   return (
     <div className={hasBg && 'bg-primary-blue '}>
       <h2 className="accordion-header" id={`heading${id}`}>
@@ -32,7 +38,7 @@ export default function FAQuestion({
           <p
             className={`${hasBg ? 'text-white' : 'text-primary-blue'} text-xl`}
           >
-            {answer}
+            <div className="markdown-light">{parse(answerText)}</div>
           </p>
         </div>
       </div>
