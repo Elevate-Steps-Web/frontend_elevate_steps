@@ -10,9 +10,15 @@ export function Page({
   },
   children,
   currentPage,
+  pageMetaDescription,
 }) {
   return (
-    <Layout favicon={favicon} siteName={siteName} currentPage={currentPage}>
+    <Layout
+      favicon={favicon}
+      siteName={siteName}
+      currentPage={currentPage}
+      pageMetaDescription={pageMetaDescription}
+    >
       <div className="flex flex-col h-screen">
         <AppNavigation nav={nav} />
         <main className="flex-grow">{children}</main>

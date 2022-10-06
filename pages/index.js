@@ -18,6 +18,7 @@ export default function Home({
     statsSection,
     faeqSection,
     ctaSection,
+    pageMetaDescription,
   },
   notFound,
 }) {
@@ -30,7 +31,11 @@ export default function Home({
   return isLoading ? (
     <Loading state={isLoading} />
   ) : (
-    <Page global={global} currentPage="Home">
+    <Page
+      global={global}
+      currentPage="Home"
+      pageMetaDescription={pageMetaDescription}
+    >
       <div id="app-carousel">
         {caroussel && <AppCarousel data={caroussel} />}
       </div>
@@ -74,9 +79,10 @@ export async function getServerSideProps({ locale: routeLocale }) {
   const homepageContent = {};
   const {
     data: {
-      attributes: { content },
+      attributes: { content, pageMetaDescription },
     },
   } = homepage;
+  homepageContent.pageMetaDescription = pageMetaDescription;
   content.forEach((item) => {
     /* eslint-disable-next-line no-underscore-dangle */
     switch (item.__component) {
