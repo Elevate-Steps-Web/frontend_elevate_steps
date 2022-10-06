@@ -1,15 +1,23 @@
 import Head from 'next/head';
-import Script from 'next/script';
 import React from 'react';
+import Script from 'next/script';
 import { getStrapiMedia } from '../lib/media';
 
 export function Layout({
-  favicon, siteName, children, currentPage,
+  favicon,
+  siteName,
+  children,
+  currentPage,
+  pageMetaDescription,
 }) {
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href={getStrapiMedia(favicon)} />
+        <link
+          rel="shortcut icon"
+          href={getStrapiMedia(favicon)}
+          key="favicon"
+        />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
@@ -18,8 +26,12 @@ export function Layout({
           |
           {` ${currentPage}`}
         </title>
-        <meta name="description" content="Elevate Steps Africa" />
-        <link rel="icon" href={getStrapiMedia(favicon)} />
+        <meta property="og:title" content={`${siteName} | ${currentPage}`} />
+        <meta property="og:description" content={pageMetaDescription} />
+        <meta property="og:image" content={getStrapiMedia(favicon)} />
+        <meta property="og:image:width" content="500" />
+        <meta property="og:image:height" content="500" />
+        <link rel="icon" href={getStrapiMedia(favicon)} key="icon" />
       </Head>
       {children}
       <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" />
