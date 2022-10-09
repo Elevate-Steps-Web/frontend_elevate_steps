@@ -11,7 +11,7 @@ export default function SocialMediaHandle({
             className={`bi bi-instagram ${
               displayColored
                 ? 'text-[#833AB4] hover:text-[#5B51D8]'
-                : 'text-white'
+                : 'text-white hover:text-[#833AB4]'
             }`}
           />
         );
@@ -21,7 +21,7 @@ export default function SocialMediaHandle({
             className={`bi bi-twitter ${
               displayColored
                 ? 'text-[#1DA1F2] hover:text-sky-400'
-                : 'text-white'
+                : 'text-white hover:text-[#1DA1F2]'
             }`}
           />
         );
@@ -41,7 +41,7 @@ export default function SocialMediaHandle({
             className={`bi bi-facebook ${
               displayColored
                 ? 'text-blue-600 hover:text-blue-400'
-                : 'text-white'
+                : 'text-white hover:text-blue-600'
             }`}
           />
         );

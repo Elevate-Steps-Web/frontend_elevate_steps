@@ -8,7 +8,7 @@ export default function FAQuestion({
   const answerText = md.render(answer);
 
   return (
-    <div className={hasBg && 'bg-primary-blue '}>
+    <div className={hasBg ? 'bg-primary-blue ' : ''}>
       <h2 className="accordion-header" id={`heading${id}`}>
         <button
           className={`accordion-button collapsed focus:ring-0 ${
