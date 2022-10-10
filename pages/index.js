@@ -55,7 +55,11 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps({ locale: routeLocale }) {
+export async function getServerSideProps({ locale: routeLocale, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=36000',
+  );
   const homepage = await fetchAPI('/homepage', {
     populate: {
       content: {

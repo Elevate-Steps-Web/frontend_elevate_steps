@@ -50,7 +50,11 @@ export default function ProfilesPage({
   );
 }
 
-export async function getServerSideProps({ locale: routeLocale }) {
+export async function getServerSideProps({ locale: routeLocale, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=36000',
+  );
   // get Page properties
   const page = await fetchAPI('/profile', {
     populate: {

@@ -42,7 +42,11 @@ export default function WhoWeAre({ global, pageData, notFound }) {
   );
 }
 
-export async function getServerSideProps({ locale: routeLocale }) {
+export async function getServerSideProps({ locale: routeLocale, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=36000',
+  );
   const page = await fetchAPI('/who-we-are', {
     populate: {
       populate: '*',
