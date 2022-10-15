@@ -23,7 +23,7 @@ export default function FormSection({ data }) {
   function changeSlide() {
     return swiper.slideNext();
   }
-
+  console.log(fields.filter((field) => field.inputType === 'Submit'));
   return (
     <Swiper
       className="mySwiper2 swiper-v"
@@ -53,7 +53,7 @@ export default function FormSection({ data }) {
           <FormInput data={field} />
         </SwiperSlide>
       ))}
-      {fields[0].inputField.inputType !== 'Submit' && (
+      {fields.filter((field) => field.inputType === 'Submit').length === 0 && (
         <SwiperSlide>
           <div className="flex flex-col lg:flex-row lg:justify-center lg:w-full">
             <span className="text-2xl lg:text-4xl font-cursive text-green lg:mr-10 px-14 py-5 lg:px-0 lg:w-3/5">
