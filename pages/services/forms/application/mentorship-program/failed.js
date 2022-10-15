@@ -32,9 +32,9 @@ export default function ApplicationFailed({ global, notFound }) {
           <h1 className="text-primary-blue text-4xl text-center px-4 md:px-24">
             <span>Application Failed!</span>
             <span className="block mt-5">
-              {'Your application failed. We`&apos;`re really sorry about that.'}
+              {"We're really sorry about that. "}
               {
-                'Don`&apos;`t worry, it`&apos;`s most likely a failure on our side, and we`&apos;`ll try to fix it'
+                "Don't worry, it's most likely a failure on our side, and we'll try to fix it. "
               }
               In the meantime, please wait or click on the bouncing button below to try again.
             </span>

@@ -9,7 +9,7 @@ export default function FormIntroSection({ title, introText, direction }) {
       <p className="text-xl lg:text-2xl px-14 lg:px-36 md:px-24 text-white ">
         {introText}
       </p>
-      <span className="block text-lg lg:text-xl text-white mb-16">
+      <span className="block text-lg lg:text-xl text-white mb-16 mt-8 italic">
         Fields marked with
         {' '}
         <span className="text-orange inline lg:text-2xl">{' * '}</span>
