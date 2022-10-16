@@ -22,12 +22,6 @@ export default function FourOhFour({ global }) {
           caption: "Looks like you're lost!",
           homePrompt: 'Wanna head back home? Hit the bouncing button below!',
         };
-      case 'fr':
-        return {
-          caption: 'On dirait que tu es perdu!',
-          homePrompt:
-            'Vous voulez rentrer? Appuyez sur le bouton rebondissant ci-dessous!',
-        };
       default:
         return {
           caption: "Looks like you're lost!",
