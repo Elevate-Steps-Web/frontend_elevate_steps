@@ -7,7 +7,6 @@ import AppNavigationDropdown from './AppNavigation/AppNavigationDropdown';
 import AppNavigationItem from './AppNavigation/AppNavigationItem';
 import AppNavigationOffCanvasDropdown from './AppNavigation/AppNavigationOffCanvasDropdown';
 import AppNavigationOffCanvasItem from './AppNavigation/AppNavigationOffCanvasItem';
-import LangSwitch from './LangSwitch';
 
 function renderItemOrDropdown(navItem, offcanvas = false) {
   if (!offcanvas) {
@@ -127,7 +126,7 @@ function AppNavigation({ nav }) {
               </a>
             </Link>
           </div>
-          <LangSwitch />
+          {/* <LangSwitch />  will be activated once we support other languages. */}
         </div>
       </div>
       <div
@@ -168,7 +167,7 @@ function AppNavigation({ nav }) {
         </div>
         <div className="lg:hidden mx-10 flex flex-col gap-y-4 text-2xl">
           {nav.map((navItem) => renderItemOrDropdown(navItem, true))}
-          <LangSwitch />
+          {/* <LangSwitch /> will be activated once we support other languages. */}
         </div>
         <div className="hidden flex flex-col lg:flex-row w-[200px] gap-y-3 lg:gap-y-0 lg:gap-x-4 lg:w-[180px] items-center">
           <Link href="/register" passHref>
