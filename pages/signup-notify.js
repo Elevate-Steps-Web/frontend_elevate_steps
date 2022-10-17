@@ -37,13 +37,17 @@ export async function getServerSideProps({ locale: routeLocale, res }) {
       pageHeader: {
         populate: '*',
       },
+      responseMessage: {
+        populate: '*',
+      },
     },
     locale: routeLocale,
   });
-  const { pageHeader, formInputFields } = page.data.attributes;
+  const { pageHeader, formInputFields, responseMessage } = page.data.attributes;
   const pageData = {
     pageHeader,
     formInputFields,
+    responseMessage,
   };
   if (page.error) {
     console.log('Fetching data failed');
