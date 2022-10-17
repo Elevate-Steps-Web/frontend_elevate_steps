@@ -18,7 +18,7 @@ handler.post(async (req, res) => {
 
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append('Authorization', `bearer ${process.env.STRAPI_API_TOKEN}`);
+  //   myHeaders.append('Authorization', `bearer ${process.env.STRAPI_API_TOKEN}`);
 
   const raw = JSON.stringify({
     data: {
@@ -34,7 +34,10 @@ handler.post(async (req, res) => {
     redirect: 'follow',
   };
 
-  fetch('http://localhost:1337/api/signups-elevate-talks', requestOptions)
+  fetch(
+    `http://localhost:1337/api/signups-${_.kebabCase(program)}`,
+    requestOptions,
+  )
     .then((response) => response.json())
     .then((result) => console.log(result))
     .catch((error) => console.log('error', error));
