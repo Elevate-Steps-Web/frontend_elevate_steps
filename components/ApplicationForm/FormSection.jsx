@@ -23,9 +23,9 @@ export default function FormSection({ data }) {
   function changeSlide() {
     return swiper.slideNext();
   }
-  console.log(fields.filter((field) => field.inputType === 'Submit'));
   return (
     <Swiper
+      shortSwipes={false}
       className="mySwiper2 swiper-v"
       direction="vertical"
       pagination={{

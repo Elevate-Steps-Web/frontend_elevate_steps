@@ -14,8 +14,6 @@ handler.use(middleware);
 handler.post(async (req, res) => {
   const { name, email, program } = req.body;
 
-  console.log(`${name} ${email} ${_.kebabCase(program)}`);
-
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
   //   myHeaders.append('Authorization', `bearer ${process.env.STRAPI_API_TOKEN}`);

@@ -99,9 +99,9 @@ export default function MentorshipApplicationPage({
     >
       {isApplicationOpen ? (
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col flex-grow h-screen bg-primary-blue justify-center lg:justify-start  lg:items-start items-center ">
+          <div className="flex flex-col bg-primary-blue lg:justify-start lg:items-start items-center h-[88vh] md:h-screen overflow-scroll">
             <Link href="/" passHref>
-              <a className="h-24 w-fit">
+              <a className="h-10 md:h-24 w-fit">
                 <div className="lg:absolute lg:h-20 h-10 lg:mt-8 lg:ml-14 mt-6 ml-4">
                   {footer
                     .filter(
@@ -110,7 +110,7 @@ export default function MentorshipApplicationPage({
                     .map((image) => (
                       <AdvancedImage
                         key={1}
-                        className="object-cover object-center h-full lg:h-10 lg:w-full"
+                        className="object-cover object-center h-6 xl:h-10 lg:w-full"
                         cldImg={cld.image(
                           image.navBrand.data.attributes.provider_metadata
                             .public_id,
@@ -120,12 +120,13 @@ export default function MentorshipApplicationPage({
                 </div>
               </a>
             </Link>
-            <div className="lg:absolute lg:h-20 lg:mt-6 lg:mr-14 lg:right-0 md:mb-0 text-center mt-4 pb-2">
-              <span className="text-secondary-blue font-cursive text-2xl">
+            <div className="lg:absolute lg:h-16 lg:mt-6 lg:mr-14 lg:right-0 md:mb-0 text-center mt-4 pb-2">
+              <span className="text-secondary-blue font-cursive text-lg lg:text-2xl">
                 Elevate Mentorship Program Application
               </span>
             </div>
             <Swiper
+              shortSwipes={false}
               scrollbar={{
                 hide: false,
                 draggable: true,
