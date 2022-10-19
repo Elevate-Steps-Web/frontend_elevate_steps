@@ -33,7 +33,7 @@ export default function FormInput({ data }) {
             htmlFor={_.kebabCase(fieldName)}
             key={uuidv4()}
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-2xl lg:text-3xl mb-6 px-1">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -46,9 +46,9 @@ export default function FormInput({ data }) {
               className="
                             text-white
                             mt-1
-                            h-16
+                            h-12
                             text-center
-                            text-2xl lg:text-4xl
+                            text-2xl lg:text-3xl
                             block
                             w-full
                             rounded-md
@@ -75,7 +75,7 @@ export default function FormInput({ data }) {
             htmlFor={_.kebabCase(fieldName)}
             key="text-area-application-form"
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-5 lg:mb-10">
+            <span className="text-secondary-blue font-cursive text-xl md:text-2xl lg:text-3xl mb-5 lg:mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -89,7 +89,6 @@ export default function FormInput({ data }) {
                                 text-white
                                     block
                                     w-full
-                                    text-xl
                                     rounded-md
                                     empty:border-white border-2
                                     shadow-sm
@@ -101,7 +100,7 @@ export default function FormInput({ data }) {
                                 focus:invalid:border-red-600 focus:invalid:ring-red-600
                                 focus:valid:border-green focus:valid:ring-green
                                 "
-              rows="8"
+              rows={`${window.innerHeight > window.innerWidth ? '6' : '10'}`}
               required={requiredField}
               maxLength={maxLength ?? null}
               onChange={recount}
@@ -118,7 +117,7 @@ export default function FormInput({ data }) {
             htmlFor={_.kebabCase(fieldName)}
             key={uuidv4()}
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-2xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -131,9 +130,9 @@ export default function FormInput({ data }) {
               className="
                                     mt-1
                               text-white
-                                    h-16
+                                    h-12
                                     text-center
-                                    text-2xl lg:text-4xl
+                                    text-2xl lg:text-3xl
                                     block
                                     w-full
                                     rounded-md
@@ -162,7 +161,7 @@ export default function FormInput({ data }) {
             htmlFor={_.kebabCase(fieldName)}
             key={uuidv4()}
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-2xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -177,9 +176,9 @@ export default function FormInput({ data }) {
               inputClass="
                                     mt-1
                               text-white
-                                    h-16
+                                    h-12
                                     text-center
-                                    text-2xl lg:text-4xl
+                                    text-2xl lg:text-3xl
                                     block
                                     w-full
                                     rounded-md
@@ -204,17 +203,17 @@ export default function FormInput({ data }) {
       case 'Radio':
         return (
           <fieldset className="block" key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-2xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
               )}
             </span>
-            <div className="mt-8 text-xl lg:text-3xl flex flex-row justify-center">
+            <div className="mt-8 text-xl lg:text-2xl flex flex-row justify-center">
               <div className="flex flex-col justify-start mx-auto">
                 {fieldOptions.map((option) => (
                   <label
-                    className="inline-flex items-center mb-4"
+                    className="inline-flex items-center mb-2"
                     htmlFor={_.kebabCase(fieldName)}
                     key={uuidv4()}
                   >
@@ -235,17 +234,17 @@ export default function FormInput({ data }) {
       case 'Checkboxes':
         return (
           <fieldset className="block text-xl lg:text-3xl" key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-2xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
               )}
             </span>
-            <div className="mt-2 text-xl lg:text-3xl flex flex-row justify-center">
+            <div className="mt-2 text-xl lg:text-2xl flex flex-row justify-center">
               <div className="flex flex-col justify-start mx-auto mt-8">
                 {fieldOptions.map((option) => (
                   <label
-                    className="inline-flex items-center mb-6 ml-8 lg:ml-0"
+                    className="inline-flex items-center mb-2 ml-8 lg:ml-0"
                     htmlFor={_.kebabCase(fieldName)}
                     key={uuidv4()}
                     required={requiredField}
@@ -273,7 +272,7 @@ export default function FormInput({ data }) {
             htmlFor={_.kebabCase(fieldName)}
             key={uuidv4()}
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -295,7 +294,7 @@ export default function FormInput({ data }) {
       case 'Select Country':
         return (
           <label className="block text-3xl" htmlFor={fieldName} key={uuidv4()}>
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-2xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -321,7 +320,7 @@ export default function FormInput({ data }) {
             htmlFor={_.kebabCase(fieldName)}
             key={uuidv4()}
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -342,7 +341,7 @@ export default function FormInput({ data }) {
             htmlFor={_.kebabCase(fieldName)}
             key={uuidv4()}
           >
-            <span className="text-secondary-blue font-cursive text-3xl lg:text-4xl mb-10">
+            <span className="text-secondary-blue font-cursive text-3xl lg:text-3xl mb-6">
               {fieldPrompt}
               {requiredField && (
                 <span className="text-orange inline">{' *'}</span>
@@ -356,7 +355,7 @@ export default function FormInput({ data }) {
                                 text-white
                                     h-16
                                     text-center
-                                    text-2xl lg:text-4xl
+                                    text-2xl lg:text-3xl
                                     block
                                     w-full
                                     rounded-md
