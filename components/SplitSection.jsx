@@ -2,7 +2,9 @@ import { AdvancedImage, AdvancedVideo } from '@cloudinary/react';
 
 import { Cloudinary } from '@cloudinary/url-gen';
 import Link from 'next/link';
+import _ from 'lodash';
 import Section from './Section';
+import YouTubePlayer from './YouTubePlayer';
 
 export default function SplitSection({ data }) {
   const cld = new Cloudinary({
@@ -20,10 +22,14 @@ export default function SplitSection({ data }) {
     media: {
       data: {
         attributes: {
-          provider_metadata: { public_id: mediaId, resource_type: mediaType },
-        },
-      },
-    },
+          provider_metadata: {
+            public_id: mediaId = '',
+            resource_type: mediaType = '',
+          },
+        } = {},
+      } = {},
+    } = {},
+    embedVideoUrl,
   } = data;
   return (
     <Section>
@@ -32,18 +38,28 @@ export default function SplitSection({ data }) {
           id="media"
           className="order-last md:order-1 md:block h-full w-full bg-black "
         >
-          {mediaType === 'image' && (
-            <AdvancedImage
-              className="object-cover object-center h-full w-full"
-              cldImg={cld.image(mediaId)}
-            />
-          )}
-          {mediaType === 'video' && (
-            <AdvancedVideo
-              className="object-cover object-center h-full w-full py-14"
-              cldVid={cld.video(mediaId)}
-              controls
-            />
+          {embedVideoUrl ? (
+            <YouTubePlayer src={embedVideoUrl} />
+          ) : (
+            <div className="w-full h-full">
+              {!_.isEmpty(data.media.data) && (
+                <>
+                  {mediaType === 'image' && (
+                    <AdvancedImage
+                      className="object-cover object-center h-full w-full"
+                      cldImg={cld.image(mediaId)}
+                    />
+                  )}
+                  {mediaType === 'video' && (
+                    <AdvancedVideo
+                      className="object-cover object-center h-full w-full py-14"
+                      cldVid={cld.video(mediaId)}
+                      controls
+                    />
+                  )}
+                </>
+              )}
+            </div>
           )}
         </div>
         <div
