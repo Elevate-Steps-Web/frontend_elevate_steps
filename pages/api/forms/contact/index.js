@@ -24,36 +24,42 @@ handler.post(async (req, res) => {
     message: senderMessage,
   } = req.body;
 
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: WEB_EMAIL,
-      pass: WEB_PASSWORD,
-    },
-  });
   const htmlMessage = `
-    <h1>Contact message from ${URL}<h1>
-    <h3>Sender name</h3>
-    <p>${senderName}</p>
-    <h3>Sender phone number</h3>
-    <p>${senderPhone || 'not provided'}</p>
-    <h3>Sender email</h3>
-    <p>${senderEmail}</p>
-    <h3>Message</h3>
-    <p>${senderMessage}</p>
-    `;
-  const info = await transporter.sendMail({
-    to: `Elevate Steps Web <${ELEVATE_EMAIL}>`,
-    replyTo: senderEmail,
-    subject: `[ContactForm] ${senderSubject}`,
-    html: htmlMessage,
-  });
+      <h1>Contact message from ${URL}<h1>
+      <h3>Sender name</h3>
+      <p>${senderName}</p>
+      <h3>Sender phone number</h3>
+      <p>${senderPhone || 'not provided'}</p>
+      <h3>Sender email</h3>
+      <p>${senderEmail}</p>
+      <h3>Message</h3>
+      <p>${senderMessage}</p>
+      `;
+  try {
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: WEB_EMAIL,
+        pass: WEB_PASSWORD,
+      },
+    });
 
-  console.log('Message sent!');
-  console.log(info);
-  res.status(200).json({ status: 'Alles Gucci' });
+    const info = await transporter.sendMail({
+      to: `Elevate Steps Web <${ELEVATE_EMAIL}>`,
+      replyTo: senderEmail,
+      subject: `[ContactForm] ${senderSubject}`,
+      html: htmlMessage,
+    });
+
+    console.log('Message sent!');
+    console.log(info);
+    res.status(200).json({ status: 'Alles Gucci' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: 'failed' });
+  }
 });
 
 export default handler;
