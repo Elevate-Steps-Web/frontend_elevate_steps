@@ -38,7 +38,7 @@ handler.post(async (req, res) => {
   )
     .then((response) => response.json())
     .then((result) => console.log(result))
-    .catch((error) => console.log('error', error));
+    .catch((error) => console.error(error));
 
   res.status(200).json({ status: 'Alles Gucci' });
 });
