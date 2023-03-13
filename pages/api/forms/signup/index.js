@@ -8,6 +8,8 @@ export const config = {
   },
 };
 
+const { SIGNUP_API_BASE_URL } = process.env;
+
 const handler = nextConnect();
 handler.use(middleware);
 
@@ -32,10 +34,7 @@ handler.post(async (req, res) => {
     redirect: 'follow',
   };
 
-  fetch(
-    `http://localhost:1337/api/signups-${_.kebabCase(program)}`,
-    requestOptions,
-  )
+  fetch(`${SIGNUP_API_BASE_URL}-${_.kebabCase(program)}`, requestOptions)
     .then((response) => response.json())
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
