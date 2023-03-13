@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -H 0.0.0.0",
-    "prepare": "husky install"
+    "prepare_husky": "husky install"
   },
   "dependencies": {
     "@cloudinary/react": "^1.4.1",
