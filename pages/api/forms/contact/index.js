@@ -55,7 +55,7 @@ handler.post(async (req, res) => {
 
     console.log('Message sent!');
     console.log(info);
-    res.status(200).json({ status: 'Alles Gucci' });
+    res.status(200).json({ status: 'Success' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: 'failed' });

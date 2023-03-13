@@ -18,7 +18,6 @@ handler.post(async (req, res) => {
 
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
-  //   myHeaders.append('Authorization', `bearer ${process.env.STRAPI_API_TOKEN}`);
 
   const raw = JSON.stringify({
     data: {
@@ -39,7 +38,7 @@ handler.post(async (req, res) => {
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
 
-  res.status(200).json({ status: 'Alles Gucci' });
+  res.status(200).json({ status: 'Success' });
 });
 
 export default handler;
